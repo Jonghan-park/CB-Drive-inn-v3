@@ -19,9 +19,14 @@ function LoginStatus({ user }) {
           </li>
         </ul>
       ) : (
-        <Link className="link" to="/login">
-          Login
-        </Link>
+        <div className="link-container">
+          <Link className="link" to="/login">
+            Login
+          </Link>
+          <Link className="link" to="/register">
+            Register
+          </Link>
+        </div>
       )}
     </div>
   );

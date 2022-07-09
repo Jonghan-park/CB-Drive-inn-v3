@@ -2,7 +2,15 @@
   background-color: black;
 }
 
+.link-container{
+  display: flex;
+  justify-content: flex-end;
+  padding: 0 3.7rem 1rem;
+}
 .link{
   text-decoration: none;
-  
+  margin-top: -15px;
+  font-size: 1.2rem;
+  color: white;
+  padding: 0 2rem;
 }

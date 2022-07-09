@@ -7,6 +7,7 @@ import Contact from "./container/Contact/Contact";
 import About from "./container/About/About";
 import Menu from "./components/MenuItem/Menus";
 import Login from "./container/Login/Login";
+import Register from "./container/Register/Register";
 import LoginStatus from "./container/LoginStatus/LoginStatus";
 
 function App() {
@@ -45,6 +46,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Main />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
           <Route path="/menu" element={<Menu />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
