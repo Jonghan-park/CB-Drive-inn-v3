@@ -4,14 +4,13 @@ const passport = require("passport");
 const app = express();
 const port = process.env.PORT || 5000;
 require("dotenv").config();
-require("./passport");
+require("./controller/passport");
 const cors = require("cors");
 const authRoute = require("./routes/auth");
+const mailRoute = require("./routes/mail");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-
-const mailer = require("./mailer.js");
 
 app.use(
   cookieSession({
@@ -35,28 +34,7 @@ app.use(
 );
 
 app.use("/auth", authRoute);
-
-app.post("/contact", async (req, res) => {
-  const username = req.body.userName;
-  const useremail = req.body.userEmail;
-  const usermessage = req.body.userMessage;
-
-  mailer(username, useremail, usermessage).then((response) => {
-    console.log(response);
-    if (response === "success") {
-      res.status(200).json({
-        status: "Success",
-        code: 200,
-        message: "Message Sent Successfully!",
-      });
-    } else {
-      res.json({
-        status: "Fail",
-        code: response.code,
-      });
-    }
-  });
-});
+app.use("/contact", mailRoute);
 
 app.listen(port, () => {
   console.log(`App is listening on port ${port}`);

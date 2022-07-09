@@ -17,7 +17,7 @@ export default function SendEmail() {
 
     const { userName, userEmail, userMessage } = values;
     try {
-      const res = await fetch("/contact", {
+      const res = await fetch("/contact/mail", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
