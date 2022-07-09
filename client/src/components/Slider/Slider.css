@@ -1,0 +1,160 @@
+.slider{
+  width: 100%;
+  height: 90vh;
+  position: relative;
+  overflow: hidden;
+}
+
+.slide{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transform: translateX(-50%);
+  transition: all .5s ease;
+}
+
+.slider .slide img{
+  width: 100%;
+}
+
+.content {
+   position: absolute;
+   top: 23rem;
+   left: 10rem;
+   /* opacity: 0; */
+   width: 35%;
+   padding: 3rem;
+   background: rgba(65, 64, 64, 0.4);
+   animation: slide-up 1s ease 0.3s;
+   animation-fill-mode: forwards;
+   /* visibility: hidden; */
+
+}
+
+@keyframes slide-up {
+  0%{
+    visibility: visible;
+    top: 23rem;
+  }
+  100%{
+    visibility: visible;
+    top: 15rem;
+  }
+}
+
+.content p{
+  color: #fff;
+  font-size: 1.5rem;
+  display: flex;
+  align-content: flex-start;
+}
+
+.content h2 {
+  color: #fff;
+}
+
+.content hr{
+  height: 2px;
+  border: none;
+  background: rgb(255, 0, 0);
+  width: 100%;
+}
+
+.current {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.current .content {
+  opacity: 1;
+}
+
+.arrow {
+  border: 2px solid white;
+  border-radius: 50%;
+  background: transparent;
+  color: #fff;
+  top: 50%;
+  width: 2rem;
+  height: 2rem;
+  cursor: pointer;
+  position: absolute;
+  z-index: 5;
+}
+
+.arrow:hover{
+  background: #fff;
+  color: #777;
+}
+
+.next{
+  right: 1.5rem;
+}
+
+.prev{
+  left: 1.5rem;
+}
+
+
+@media screen and (max-width: 1024px){
+  .slider{
+    width: 100%;
+    height: 300px;
+  }
+  .slider .slide img{
+    width: 100%;
+  }
+  .content {
+    padding: 1rem;
+ }
+  .content h2{
+    font-size: 30px;
+  }
+  .content p{
+    font-size: 25px;
+  }
+
+  @keyframes slide-up {
+    0%{
+      visibility: visible;
+      top: 15rem;
+    }
+    100%{
+      visibility: visible;
+      top: 6rem;
+    }
+  }
+}
+
+@media screen and (max-width: 600px){
+  .slider{
+    width: 100%;
+    height: 300px;
+  }
+  .slider .slide img{
+    width: 100%;
+  }
+  .content {
+    padding: 1rem;
+    left: 6rem;
+  }
+  .content h2{
+    font-size: 20px;
+  }
+  .content p{
+    font-size: 15px;
+  }
+  @keyframes slide-up {
+    0%{
+      visibility: visible;
+      top: 15rem;
+    }
+    100%{
+      visibility: visible;
+      top: 7rem;
+    }
+  }
+}

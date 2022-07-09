@@ -1,0 +1,40 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.followUs-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.wrapper{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.icon{
+  display: flex;
+  flex-direction: row; 
+  cursor: pointer;
+}
+.icon span{
+  padding: 0 0 0 5px;
+}
+.icon a{
+  color: white;
+}
+.icon a:hover{
+  color: rgb(239, 139, 45);
+}
+
+@media screen and (max-width: 1024px){
+  
+}
+
+@media screen and (max-width: 600px){
+  .wrapper{
+    display: flex;
+    flex-direction: column;
+  }
+}

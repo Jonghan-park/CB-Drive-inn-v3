@@ -1,0 +1,27 @@
+.location-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.title{
+  padding-top: 20px;
+}
+
+.location-iframe{
+  width: 80%;
+  height: 500px;
+}
+
+@media screen and (max-width: 1024px){
+  .location-iframe{
+    width: 80%;
+    height: 400px;
+  }
+}
+
+@media screen and (max-width: 600px){
+  .location-iframe{
+    width: 80%;
+    height: 300px;
+  }
+}

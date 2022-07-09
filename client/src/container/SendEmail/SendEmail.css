@@ -1,0 +1,33 @@
+form{
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+input, textarea{
+  width: 100%;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  background: transparent;
+  border: 2px solid white;
+  resize: none;
+  color: white;
+}
+
+.sendButton{
+  color: rgb(239, 139, 45);
+  background: #191919;
+  width: 100%;
+  padding: 1rem;
+  border: 2px 2px white;
+  border-color: white;
+  border-radius: 0.5rem;
+  font-size: 25px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.sendButton:hover{
+  background: rgb(239, 139, 45);
+  color: white;
+}

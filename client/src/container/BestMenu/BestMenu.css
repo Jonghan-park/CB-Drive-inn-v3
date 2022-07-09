@@ -1,0 +1,39 @@
+.bestMenu-container .box-container{
+  display: grid; 
+  grid-template-columns: auto auto auto auto;
+  gap: 1rem;
+  padding: 1rem;
+}
+.bestMenu-container .box-container .box{
+  background: rgb(55, 54, 54);
+  border: .1rem solid rgba(0,0,0,.2);
+  border-radius: .5rem;
+  text-align: center;
+  padding: 1rem;
+  box-shadow: 3px 3px 3px;
+}
+.bestMenu-container .box-container .box .bestMenu-image{
+  height: 11rem;
+  width: 100%;
+  padding-bottom: 1rem;
+  position: relative;
+}
+.bestMenu-container .box-container .box .bestMenu-image img{
+  height: 10rem;
+  border-radius: .5rem;
+}
+
+@media screen and (max-width: 1024px){
+  .bestMenu-container .box-container{
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+}
+
+@media screen and (max-width: 600px){
+  .bestMenu-container .box-container{
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}
