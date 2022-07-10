@@ -1,20 +1,19 @@
 const mongoose = require("mongoose");
+const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const Joi = require("joi");
-const passwordComplexity = require("joi-password-complexity");
 
 const userSchema = new mongoose.Schema({
   name: {
     type: String,
-    required: true,
+    required: [true, "Please provide a name"],
   },
   email: {
     type: String,
-    required: true,
+    required: [true, "Please provice a email"],
   },
   password: {
     type: String,
-    required: true,
+    required: [true, "Please add a password"],
   },
   pic: {
     type: String,
@@ -23,22 +22,26 @@ const userSchema = new mongoose.Schema({
   },
 });
 
-userSchema.methods.generateAuthToken = function () {
-  const token = jwt.sign({ _id: this._id }, process.env.JWTPRIVATEKEY, {
-    expiresIn: "1d",
-  });
-  return token;
+userSchema.pre("save", async function (next) {
+  if (!this.isModified("password")) {
+    next();
+  }
+
+  const salt = await bcrypt.genSalt(10);
+  this.password = await bcrypt.hash(this.password, salt);
+  next();
+});
+
+userSchema.methods.matchPasswords = async function (password) {
+  return await bcrypt.compare(password, this.password);
 };
 
-const User = mongoose.model("user", userSchema);
-const validate = (data) => {
-  const schema = Joi.object({
-    name: Joi.string().required().label("Name"),
-    email: Joi.string().required().label("Email"),
-    password: passwordComplexity().required().label("Password"),
-    pic: Joi.string().required().label("ProfilePic"),
+userSchema.methods.getSignedToken = function () {
+  return jwt.sign({ id: this._id }, process.env.JWT_SECRET, {
+    expiresIn: process.env.JWT_EXPIRE,
   });
-  return schema.validate(data);
 };
 
-module.exports = { User, validate };
+const User = mongoose.model("User", userSchema);
+
+module.exports = User;
