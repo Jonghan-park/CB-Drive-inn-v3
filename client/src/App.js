@@ -1,5 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useState, useEffect } from "react";
+import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
+import PrivateScreen from "./components/PrivateRoute/PrivateScreen";
 import Navbar from "./components/Navbar/Navbar";
 import Footer from "./container/Footer/Footer";
 import Main from "./container/Main/Main";
@@ -9,6 +11,7 @@ import Menu from "./components/MenuItem/Menus";
 import Login from "./container/Login/Login";
 import Register from "./container/Register/Register";
 import LoginStatus from "./container/LoginStatus/LoginStatus";
+import MyPage from "./container/MyPage/MyPage";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -45,6 +48,14 @@ function App() {
         <LoginStatus user={user} />
         <Routes>
           <Route path="/" element={<Main />} />
+          {/* <Route
+            path="/mypage"
+            element={
+              <PrivateRoute exact path="/" component={PrivateScreen}>
+                <MyPage user={user} />
+              </PrivateRoute>
+            }
+          /> */}
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/menu" element={<Menu />} />

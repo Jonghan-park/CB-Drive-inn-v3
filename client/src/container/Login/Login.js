@@ -5,16 +5,9 @@ import Google from "../../images/google.png";
 import Github from "../../images/github.png";
 
 function Login() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-
-  const [data, setData] = useState({
-    email: "",
-    password: "",
-  });
-
-  const inputChange = ({ currentTarget: input }) => {
-    setData({ ...data, [input.name]: input.value });
-  };
 
   const google = () => {
     window.open("http://localhost:5000/auth/google", "_self");
@@ -24,12 +17,14 @@ function Login() {
     window.open("http://localhost:5000/auth/github", "_self");
   };
 
-  const registerSubmit = async (e) => {
+  const loginHandler = async (e) => {
     e.preventDefault();
     try {
-      const url = "http://localhost:5000/user/login";
-      const { data: res } = await axios.post(url, data);
-      localStorage.setItem("token", res.data);
+      const { data: res } = await axios.post("/user/login", {
+        email,
+        password,
+      });
+      localStorage.setItem("authToken", res.data);
       window.location = "/";
     } catch (error) {
       if (
@@ -46,7 +41,7 @@ function Login() {
     <div className="login">
       <h3 className="loginTitle">Choose a Login Method</h3>
       <div className="wrapper">
-        {error && <div>{error}</div>}
+        {error && <span>{error}</span>}
         <div className="left">
           <div className="loginButton google" onClick={google}>
             <img src={Google} alt="google" className="icon" />
@@ -63,9 +58,25 @@ function Login() {
           <div className="line" />
         </div>
         <div className="right">
-          <form onSubmit={registerSubmit}>
-            <input type="email" onChange={inputChange} placeholder="Email" />
-            <input type="text" onChange={inputChange} placeholder="Password" />
+          <form onSubmit={loginHandler}>
+            <label htmlFor="email">Email:</label>
+            <input
+              type="email"
+              required
+              id="email"
+              placeholder="Enter Your Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            <label htmlFor="password">Password:</label>
+            <input
+              type="password"
+              required
+              id="password"
+              placeholder="Enter Your Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
             <button className="submit">Login</button>
           </form>
         </div>
