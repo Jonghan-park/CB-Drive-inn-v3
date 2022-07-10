@@ -6,6 +6,8 @@ function LoginStatus({ user }) {
   const logout = () => {
     window.open("http://localhost:5000/auth/logout", "_self");
   };
+
+  const token = localStorage.getItem("authToken");
   return (
     <div className="loginStatus-container">
       {user ? (

@@ -1,13 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../Login/Login.css";
 import Google from "../../images/google.png";
 import Github from "../../images/github.png";
+import { useNavigate, Link } from "react-router-dom";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+
+  const navigate = useNavigate();
+
+  // useEffect(() => {
+  //   if (localStorage.getItem("authToken")) {
+  //     navigate("/");
+  //   }
+  // }, []);
 
   const google = () => {
     window.open("http://localhost:5000/auth/google", "_self");
@@ -78,6 +87,9 @@ function Login() {
               onChange={(e) => setPassword(e.target.value)}
             />
             <button className="submit">Login</button>
+            <span>
+              Don't have an account? <Link to="/register">Register</Link>
+            </span>
           </form>
         </div>
       </div>
