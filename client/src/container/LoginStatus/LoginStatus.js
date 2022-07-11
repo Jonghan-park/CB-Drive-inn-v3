@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect } from "react";
+import axios from "axios";
 import { Link } from "react-router-dom";
 import "../LoginStatus/LoginStatus.css";
 
@@ -7,7 +8,6 @@ function LoginStatus({ user }) {
     window.open("http://localhost:5000/auth/logout", "_self");
   };
 
-  const token = localStorage.getItem("authToken");
   return (
     <div className="loginStatus-container">
       {user ? (
