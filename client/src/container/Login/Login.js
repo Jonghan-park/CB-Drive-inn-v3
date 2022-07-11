@@ -29,12 +29,12 @@ function Login() {
   const loginHandler = async (e) => {
     e.preventDefault();
     try {
-      const { data: res } = await axios.post("/user/login", {
+      const { data } = await axios.post("/user/login", {
         email,
         password,
       });
-      localStorage.setItem("authToken", res.data);
-      window.location = "/";
+      localStorage.setItem("authToken", data.token);
+      navigate("/");
     } catch (error) {
       if (
         error.response &&
