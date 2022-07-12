@@ -10,7 +10,6 @@ const cors = require("cors");
 const authRoute = require("./routes/auth");
 const mailRoute = require("./routes/mail");
 const userRoute = require("./routes/user");
-const privateRoute = require("./routes/private");
 const connection = require("../server/Database/db");
 
 // Database connection
@@ -41,7 +40,6 @@ app.use(
 app.use("/auth", authRoute);
 app.use("/contact", mailRoute);
 app.use("/user", userRoute);
-app.use("/private", privateRoute);
 
 app.listen(port, () => {
   console.log(`App is listening on port ${port}`);

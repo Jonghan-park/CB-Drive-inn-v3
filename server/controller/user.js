@@ -58,3 +58,13 @@ const sendUserAndToken = (user, statusCode, res) => {
     token: token,
   });
 };
+
+exports.mypage = async (req, res, next) => {
+  const { _id, name, email } = await User.findById(req.user.id);
+
+  res.status(200).json({
+    id: _id,
+    name,
+    email,
+  });
+};

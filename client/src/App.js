@@ -14,52 +14,46 @@ import MyPage from "./container/MyPage/MyPage";
 
 function App() {
   const [user, setUser] = useState(null);
+  const getSnsUser = () => {
+    fetch("http://localhost:5000/auth/login/success", {
+      method: "GET",
+      credentials: "include",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Credentials": true,
+      },
+    })
+      .then((response) => {
+        if (response.status === 200) return response.json();
+        throw new Error("authentication has been failed!");
+      })
+      .then((resObject) => {
+        setUser(resObject.user);
+        console.log(user);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+  const getUser = async () => {
+    const config = { headers: { "Content-Type": "application/json" } };
+    await axios
+      .get("/user/login", config)
+      .then((response) => {
+        if (response.status === 200) return response.json();
+        throw new Error("authentication has been failed!");
+      })
+      .then((resObject) => {
+        setUser(resObject.user);
+        console.log(user);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   useEffect(() => {
-    const getSnsUser = () => {
-      fetch("http://localhost:5000/auth/login/success", {
-        method: "GET",
-        credentials: "include",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-          "Access-Control-Allow-Credentials": true,
-        },
-      })
-        .then((response) => {
-          if (response.status === 200) return response.json();
-          throw new Error("authentication has been failed!");
-        })
-        .then((resObject) => {
-          setUser(resObject.user);
-          console.log(user);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    };
-    const getUser = async () => {
-      fetch("http://localhost:5000/user/login", {
-        method: "GET",
-        credentials: "include",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-          "Access-Control-Allow-Credentials": true,
-        },
-      })
-        .then((response) => {
-          if (response.status === 200) return response.json();
-          throw new Error("authentication has been failed!");
-        })
-        .then((resObject) => {
-          setUser(resObject.user);
-          console.log(user);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    };
     getSnsUser();
     getUser();
   }, []);
