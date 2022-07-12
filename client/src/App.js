@@ -9,33 +9,34 @@ import Menu from "./components/MenuItem/Menus";
 import Login from "./container/Login/Login";
 import Register from "./container/Register/Register";
 import LoginStatus from "./container/LoginStatus/LoginStatus";
+import Mypage from "./container/MyPage/MyPage";
 
 function App() {
   const [user, setUser] = useState(null);
-  const getSnsUser = () => {
-    fetch("http://localhost:5000/auth/login/success", {
-      method: "GET",
-      credentials: "include",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Credentials": true,
-      },
-    })
-      .then((response) => {
-        if (response.status === 200) return response.json();
-        throw new Error("authentication has been failed!");
-      })
-      .then((resObject) => {
-        setUser(resObject.user);
-        console.log(user);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
 
   useEffect(() => {
+    const getSnsUser = () => {
+      fetch("http://localhost:5000/auth/login/success", {
+        method: "GET",
+        credentials: "include",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Credentials": true,
+        },
+      })
+        .then((response) => {
+          if (response.status === 200) return response.json();
+          throw new Error("authentication has been failed!");
+        })
+        .then((resObject) => {
+          setUser(resObject.user);
+          console.log(user);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    };
     getSnsUser();
   }, []);
 
@@ -48,7 +49,7 @@ function App() {
           <Route path="/" element={<Main />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-
+          <Route path="/mypage" element={<Mypage />} />
           <Route path="/menu" element={<Menu />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />

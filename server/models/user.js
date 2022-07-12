@@ -38,9 +38,13 @@ userSchema.methods.matchPasswords = async function (password) {
 
 // Generate a access token based on secret key from .env file
 userSchema.methods.getSignedToken = function () {
-  return jwt.sign({ id: this._id }, process.env.JWT_SECRET, {
-    expiresIn: process.env.JWT_EXPIRE,
-  });
+  return jwt.sign(
+    { id: this._id, name: this.name, pic: this.pic, email: this.email },
+    process.env.JWT_SECRET,
+    {
+      expiresIn: process.env.JWT_EXPIRE,
+    }
+  );
 };
 
 const User = mongoose.model("User", userSchema);

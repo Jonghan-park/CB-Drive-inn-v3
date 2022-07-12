@@ -1,6 +1,5 @@
 const router = require("express").Router();
 const passport = require("passport");
-const User = require("../models/user");
 
 const CLIENT_URL = "http://localhost:3000/";
 
