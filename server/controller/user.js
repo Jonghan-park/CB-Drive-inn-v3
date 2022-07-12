@@ -1,5 +1,4 @@
 const User = require("../models/user");
-const axios = require("axios");
 
 exports.login = async (req, res) => {
   const { email, password } = req.body;
@@ -24,7 +23,7 @@ exports.login = async (req, res) => {
         .status(404)
         .json({ success: false, error: "Invalid credentials - password" });
     }
-    sendToken(user, 200, res);
+    sendUserAndToken(user, 200, res);
   } catch (error) {
     res.status(500).json({ success: false, error: error.message });
   }
@@ -39,7 +38,7 @@ exports.register = async (req, res) => {
       email,
       password,
     });
-    sendToken(user, 201, res);
+    sendUserAndToken(user, 201, res);
   } catch (error) {
     res.status(500).json({
       success: false,
@@ -48,8 +47,14 @@ exports.register = async (req, res) => {
   }
 };
 
-const sendToken = (user, statusCode, res) => {
+const sendUserAndToken = (user, statusCode, res) => {
   // Generate a token by using getSignedToken in user model.
   const token = user.getSignedToken();
-  res.status(statusCode).json({ success: true, token });
+  return res.status(statusCode).json({
+    success: true,
+    _id: user._id,
+    name: user.name,
+    email: user.email,
+    token: token,
+  });
 };

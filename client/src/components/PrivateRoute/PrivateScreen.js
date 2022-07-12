@@ -19,7 +19,7 @@ function PrivateScreen() {
         },
       };
       try {
-        const { data } = await axios("/private/protect", config);
+        const { data } = await axios("/private/mypage", config);
         setPrivateData(data.data);
       } catch (error) {
         localStorage.removeItem("authToken");
