@@ -34,6 +34,7 @@ function Login() {
         password,
       });
       localStorage.setItem("authToken", data.token);
+      alert("Login Successful");
       navigate("/");
     } catch (error) {
       if (

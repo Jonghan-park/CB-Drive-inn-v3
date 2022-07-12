@@ -1,6 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useState, useEffect } from "react";
-import axios from "axios";
 import Navbar from "./components/Navbar/Navbar";
 import Footer from "./container/Footer/Footer";
 import Main from "./container/Main/Main";
@@ -10,7 +9,6 @@ import Menu from "./components/MenuItem/Menus";
 import Login from "./container/Login/Login";
 import Register from "./container/Register/Register";
 import LoginStatus from "./container/LoginStatus/LoginStatus";
-import MyPage from "./container/MyPage/MyPage";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -36,26 +34,9 @@ function App() {
         console.log(err);
       });
   };
-  const getUser = async () => {
-    const config = { headers: { "Content-Type": "application/json" } };
-    await axios
-      .get("/user/login", config)
-      .then((response) => {
-        if (response.status === 200) return response.json();
-        throw new Error("authentication has been failed!");
-      })
-      .then((resObject) => {
-        setUser(resObject.user);
-        console.log(user);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
 
   useEffect(() => {
     getSnsUser();
-    getUser();
   }, []);
 
   return (
@@ -65,14 +46,6 @@ function App() {
         <LoginStatus user={user} />
         <Routes>
           <Route path="/" element={<Main />} />
-          {/* <Route
-            path="/mypage"
-            element={
-              <PrivateRoute exact path="/" component={PrivateScreen}>
-                <PrivateScreen />
-              </PrivateRoute>
-            }
-          /> */}
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
 

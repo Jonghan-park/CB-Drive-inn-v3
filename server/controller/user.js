@@ -50,11 +50,11 @@ exports.register = async (req, res) => {
 const sendUserAndToken = (user, statusCode, res) => {
   // Generate a token by using getSignedToken in user model.
   const token = user.getSignedToken();
+
   return res.status(statusCode).json({
     success: true,
-    _id: user._id,
     name: user.name,
-    email: user.email,
+    pic: user.pic,
     token: token,
   });
 };
