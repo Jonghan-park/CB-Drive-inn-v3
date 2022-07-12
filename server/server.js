@@ -1,5 +1,6 @@
 const express = require("express");
 const cookieSession = require("cookie-session");
+const cookieParser = require("cookie-parser");
 const passport = require("passport");
 const app = express();
 const port = process.env.PORT || 5000;
@@ -17,6 +18,7 @@ connection();
 
 // Middlewares
 app.use(express.json());
+app.use(cookieParser());
 app.use(express.urlencoded({ extended: false }));
 app.use(
   cookieSession({

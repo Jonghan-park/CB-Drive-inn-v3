@@ -23,9 +23,9 @@ router.get("/login/failed", (req, res) => {
 });
 
 router.get("/logout", (req, res) => {
+  localStorage.removeItem("authToken");
   req.logout();
   res.redirect(CLIENT_URL);
-  localStorage.removeItem("authToken");
 });
 
 router.get("/google", passport.authenticate("google", { scope: ["profile"] }));
