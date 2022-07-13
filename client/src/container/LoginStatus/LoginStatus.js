@@ -41,10 +41,13 @@ function LoginStatus() {
           </li>
           <li className="loginStatus-listItem">{user.name}</li>
 
-          <Link to="/user/mypage">
-            <li className="loginStatus-listItem">My page</li>
-          </Link>
-          <button className="btn btn-secondary" onClick={logout}>
+          <li className="loginStatus-listItem">
+            <Link to="/user/mypage" className="mypage-link">
+              My page
+            </Link>
+          </li>
+
+          <button className="logout-btn" onClick={logout}>
             Logout
           </button>
         </ul>
