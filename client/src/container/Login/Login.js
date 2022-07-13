@@ -50,56 +50,47 @@ function Login() {
   };
 
   return (
-    <div className="login">
-      <h3 className="loginTitle">Login</h3>
-      <div className="underline" />
-      <div className="wrapper">
-        {error && <span>{error}</span>}
-        <div className="left">
-          <div className="google-btn" onClick={google}>
-            <div className="google-icon-wrapper">
-              <img src={Google} alt="google" className="icon" />
-            </div>
-            <p className="btn-text">Sign in with Google</p>
+    <>
+      <div className="login">
+        <h3 className="loginTitle">Login</h3>
+        <div className="underline" />
+        <form className="login-form" onSubmit={loginHandler}>
+          <label htmlFor="email">Email:</label>
+          <input
+            type="email"
+            required
+            id="email"
+            placeholder="Enter Your Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <label htmlFor="password">Password:</label>
+          <input
+            type="password"
+            required
+            id="password"
+            placeholder="Enter Your Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <button className="submit">Login</button>
+          <div className="link-to-register">
+            Don't have an account? <Link to="/register">Register</Link>
           </div>
-          <div className="github-btn" onClick={github}>
-            <img src={Github} alt="github" className="icon" />
-            Github
-          </div>
-        </div>
-        <div className="center">
-          <div className="line" />
-          <div className="or">Or</div>
-          <div className="line" />
-        </div>
-        <div className="right">
-          <form onSubmit={loginHandler}>
-            <label htmlFor="email">Email:</label>
-            <input
-              type="email"
-              required
-              id="email"
-              placeholder="Enter Your Email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-            <label htmlFor="password">Password:</label>
-            <input
-              type="password"
-              required
-              id="password"
-              placeholder="Enter Your Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-            <button className="submit">Login</button>
-            <span>
-              Don't have an account? <Link to="/register">Register</Link>
-            </span>
-          </form>
+        </form>
+        <div className="social-media">
+          {error && <span>{error}</span>}
+          <ul>
+            <li onClick={google}>
+              <img src={Google} alt="google" />
+            </li>
+            <li onClick={github}>
+              <img src={Github} alt="github" />
+            </li>
+          </ul>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 
