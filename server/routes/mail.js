@@ -7,7 +7,6 @@ router.post("/mail", async (req, res) => {
   const usermessage = req.body.userMessage;
 
   mailer(username, useremail, usermessage).then((response) => {
-    console.log(response);
     if (response === "success") {
       res.status(200).json({
         status: "Success",

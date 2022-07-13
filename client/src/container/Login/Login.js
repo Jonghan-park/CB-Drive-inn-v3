@@ -51,15 +51,18 @@ function Login() {
 
   return (
     <div className="login">
-      <h3 className="loginTitle">Choose a Login Method</h3>
+      <h3 className="loginTitle">Login</h3>
+      <div className="underline" />
       <div className="wrapper">
         {error && <span>{error}</span>}
         <div className="left">
-          <div className="loginButton google" onClick={google}>
-            <img src={Google} alt="google" className="icon" />
-            Google
+          <div className="google-btn" onClick={google}>
+            <div className="google-icon-wrapper">
+              <img src={Google} alt="google" className="icon" />
+            </div>
+            <p className="btn-text">Sign in with Google</p>
           </div>
-          <div className="loginButton github" onClick={github}>
+          <div className="github-btn" onClick={github}>
             <img src={Github} alt="github" className="icon" />
             Github
           </div>
