@@ -1,0 +1,30 @@
+.myPage{
+  background-color: #191919;
+  position: relative;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+}
+.underline {
+  width: 9rem;
+  height: 0.25rem;
+  background: rgb(239, 139, 45);
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 2rem;
+}
+.myPageTitle{
+  padding-top: 30px;
+  font-weight: bold;
+  font-size: 4rem;
+}
+.myPage-form{
+  display: flex;
+  align-items: center;
+}
+.myPagePic{
+  width: 100%;
+}
