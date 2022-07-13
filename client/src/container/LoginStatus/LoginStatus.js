@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import jwt_decode from "jwt-decode";
-import axios from "axios";
+
 import { Link } from "react-router-dom";
 import "../LoginStatus/LoginStatus.css";
 

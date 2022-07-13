@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+
 import axios from "axios";
 import "../Login/Login.css";
 import Google from "../../images/google.png";
@@ -33,6 +34,7 @@ function Login() {
         email,
         password,
       });
+      console.log(data);
       localStorage.setItem("authToken", data.token);
       alert("Login Successful");
       navigate("/");

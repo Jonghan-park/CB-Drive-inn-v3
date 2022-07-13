@@ -1,6 +1,9 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { createContext } from "react";
 import { useState, useEffect } from "react";
+import jwt_decode from "jwt-decode";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import axios from "axios";
+
 import Navbar from "./components/Navbar/Navbar";
 import Footer from "./container/Footer/Footer";
 import Main from "./container/Main/Main";
@@ -12,44 +15,44 @@ import Register from "./container/Register/Register";
 import LoginStatus from "./container/LoginStatus/LoginStatus";
 import Mypage from "./container/MyPage/MyPage";
 
-function App() {
-  const [user, setUser] = useState(null);
+export const UserContext = createContext();
 
-  const getUser = async (e) => {
-    e.preventDefault();
-    try {
-      await axios.get("/user/mypage").then((res) => {
-        setUser(res.data);
-      });
-      console.log("User from app.js front end");
-    } catch (error) {
-      if (
-        error.response &&
-        error.response.status >= 400 &&
-        error.response.status <= 500
-      ) {
-        console.log(error.response.data.message);
-      }
-    }
-  };
+function App() {
+  const [user, setUser] = useState({
+    user: undefined,
+    token: undefined,
+  });
+
   useEffect(() => {
-    getUser();
+    const isLoggedIn = async () => {
+      const token = localStorage.getItem("authToken");
+      if (token) {
+        const tokenUser = jwt_decode(token);
+        setUser(tokenUser);
+        if (!tokenUser) {
+          localStorage.removeItem("authToken");
+        }
+      }
+    };
+    isLoggedIn();
   }, []);
+
   return (
     <div className="backgroundColor">
       <Router>
         <Navbar />
-        <LoginStatus />
-
-        <Routes>
-          <Route path="/" element={<Main />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/user/mypage" element={<Mypage user={user} />} />
-          <Route path="/menu" element={<Menu />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/contact" element={<Contact />} />
-        </Routes>
+        <UserContext.Provider value={{ user, setUser }}>
+          <LoginStatus />
+          <Routes>
+            <Route path="/" element={<Main />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/user/mypage" element={<Mypage />} />
+            <Route path="/menu" element={<Menu />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/contact" element={<Contact />} />
+          </Routes>
+        </UserContext.Provider>
         <Footer />
       </Router>
     </div>
