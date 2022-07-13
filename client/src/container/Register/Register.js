@@ -50,44 +50,44 @@ function Register({ history }) {
       <div className="underline" />
       <form onSubmit={registerHandler} className="register-form">
         {error && <span className="error-message">{error}</span>}
-        <div className="form-group">
-          <label htmlFor="name">Name:</label>
-          <input
-            type="text"
-            required
-            id="name"
-            placeholder="Enter Your Full name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          />
-          <label htmlFor="email">Email:</label>
-          <input
-            type="email"
-            required
-            id="email"
-            placeholder="Enter Your Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          <label htmlFor="password">Password:</label>
-          <input
-            type="password"
-            required
-            id="password"
-            placeholder="Enter Your Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <label htmlFor="confirmpassword">Confirm Password:</label>
-          <input
-            type="password"
-            required
-            id="confirmpassword"
-            placeholder="Confirm Password"
-            value={confirmpassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-          />
-        </div>
+
+        <label htmlFor="name">Name:</label>
+        <input
+          type="text"
+          required
+          id="name"
+          placeholder="Enter Your Full name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
+        <label htmlFor="email">Email:</label>
+        <input
+          type="email"
+          required
+          id="email"
+          placeholder="Enter Your Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <label htmlFor="password">Password:</label>
+        <input
+          type="password"
+          required
+          id="password"
+          placeholder="Enter Your Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <label htmlFor="confirmpassword">Confirm Password:</label>
+        <input
+          type="password"
+          required
+          id="confirmpassword"
+          placeholder="Confirm Password"
+          value={confirmpassword}
+          onChange={(e) => setConfirmPassword(e.target.value)}
+        />
+
         <button type="submit" className="submit">
           Register
         </button>
