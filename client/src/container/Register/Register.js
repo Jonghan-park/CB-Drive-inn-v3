@@ -45,9 +45,10 @@ function Register({ history }) {
   };
 
   return (
-    <div className="register-container">
+    <div className="register">
+      <h3 className="registerTitle">Register</h3>
+      <div className="underline" />
       <form onSubmit={registerHandler} className="register-form">
-        <h3 className="register-title">Register</h3>
         {error && <span className="error-message">{error}</span>}
         <div className="form-group">
           <label htmlFor="name">Name:</label>
@@ -87,10 +88,12 @@ function Register({ history }) {
             onChange={(e) => setConfirmPassword(e.target.value)}
           />
         </div>
-        <button type="submit">Register</button>
-        <span>
+        <button type="submit" className="submit">
+          Register
+        </button>
+        <div className="link-to-login">
           Already have an account? <Link to="/login">Login</Link>
-        </span>
+        </div>
       </form>
     </div>
   );

@@ -1,1 +1,53 @@
+.register{
+  background-color: #191919;
+  position: relative;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 
+}
+.underline {
+  width: 9rem;
+  height: 0.25rem;
+  background: rgb(239, 139, 45);
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 2rem;
+}
+
+.registerTitle{
+  padding-top: 30px;
+  font-weight: bold;
+  font-size: 4rem;
+}
+.submit{
+  color: rgb(239, 139, 45);
+  background: #191919;
+  width: 100%;
+  padding: 1rem;
+  border: 2px 2px white;
+  border-color: white;
+  border-radius: 0.5rem;
+  font-size: 25px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.submit:hover{
+  background: rgb(239, 139, 45);
+  color: white;
+}
+.register-form{
+  width: 400px;
+  position: relative;
+  padding: 20px 30px;
+
+}
+.link-to-login{
+  margin-top: 5px;
+  text-align: center;
+  font-size: 20px;
+  font-weight: 600;
+
+}
