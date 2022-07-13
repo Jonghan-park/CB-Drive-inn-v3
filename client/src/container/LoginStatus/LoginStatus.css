@@ -1,16 +1,36 @@
 .loginStatus-container{
   background-color: black;
+  width: 100%;
+}
+.loginStatus-list{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end
+}
+.loginStatus-listItem{
+  margin-left: 20px;
+}
+.listbtn{
+  margin-right: 50px;
+  margin-left: 20px;
 }
 
-.link-container{
+.loginstatus-link-container{
   display: flex;
   justify-content: flex-end;
-  padding: 0 3.7rem 1rem;
+  
 }
-.link{
+.loginstatus-link{
   text-decoration: none;
-  margin-top: -15px;
+  margin-bottom: 20px;
   font-size: 1.2rem;
   color: white;
   padding: 0 2rem;
+}
+
+.avatar{
+  width: 50px;
+  border-radius: 50%;
+  margin-right: 20px;
 }

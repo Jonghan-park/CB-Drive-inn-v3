@@ -35,22 +35,25 @@ function LoginStatus() {
   return (
     <div className="loginStatus-container">
       {user ? (
-        <ul className="list">
-          <li className="listItem">
+        <ul className="loginStatus-list">
+          <li className="loginStatus-listItem">
             <img src={user.pic} alt="" className="avatar" />
           </li>
-          <li className="listItem">{user.name}</li>
+          <li className="loginStatus-listItem">{user.name}</li>
+
           <Link to="/user/mypage">
-            <li className="listItem">My page</li>
+            <li className="loginStatus-listItem">My page</li>
           </Link>
-          <button onClick={logout}>Logout</button>
+          <button className="btn btn-secondary" onClick={logout}>
+            Logout
+          </button>
         </ul>
       ) : (
-        <div className="link-container">
-          <Link className="link" to="/login">
+        <div className="loginstatus-link-container">
+          <Link className="loginstatus-link" to="/login">
             Login
           </Link>
-          <Link className="link" to="/register">
+          <Link className="loginstatus-link" to="/register">
             Register
           </Link>
         </div>
