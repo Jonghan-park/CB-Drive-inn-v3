@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useState, useEffect } from "react";
+import axios from "axios";
 import Navbar from "./components/Navbar/Navbar";
 import Footer from "./container/Footer/Footer";
 import Main from "./container/Main/Main";
@@ -14,42 +15,37 @@ import Mypage from "./container/MyPage/MyPage";
 function App() {
   const [user, setUser] = useState(null);
 
+  const getUser = async (e) => {
+    e.preventDefault();
+    try {
+      await axios.get("/user/mypage").then((res) => {
+        setUser(res.data);
+      });
+      console.log("User from app.js front end");
+    } catch (error) {
+      if (
+        error.response &&
+        error.response.status >= 400 &&
+        error.response.status <= 500
+      ) {
+        console.log(error.response.data.message);
+      }
+    }
+  };
   useEffect(() => {
-    const getSnsUser = () => {
-      fetch("http://localhost:5000/auth/login/success", {
-        method: "GET",
-        credentials: "include",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-          "Access-Control-Allow-Credentials": true,
-        },
-      })
-        .then((response) => {
-          if (response.status === 200) return response.json();
-          throw new Error("authentication has been failed!");
-        })
-        .then((resObject) => {
-          setUser(resObject.user);
-          console.log(user);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    };
-    getSnsUser();
+    getUser();
   }, []);
-
   return (
     <div className="backgroundColor">
       <Router>
         <Navbar />
-        <LoginStatus user={user} />
+        <LoginStatus />
+
         <Routes>
           <Route path="/" element={<Main />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/mypage" element={<Mypage />} />
+          <Route path="/user/mypage" element={<Mypage user={user} />} />
           <Route path="/menu" element={<Menu />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
