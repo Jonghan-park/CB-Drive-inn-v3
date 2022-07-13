@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import jwt_decode from "jwt-decode";
+import axios from "axios";
 import { Link } from "react-router-dom";
 import "../LoginStatus/LoginStatus.css";
 
-function LoginStatus({ snsuser }) {
+function LoginStatus() {
   const [user, setUser] = useState(null);
 
   const logout = () => {
@@ -11,7 +12,12 @@ function LoginStatus({ snsuser }) {
     window.open("http://localhost:5000/auth/logout", "_self");
   };
 
-  const getUser = () => {
+  const getUser = async () => {
+    // const { data } = await axios.get("/login/success").then((response) => {
+    //   console.log(response.data.data);
+    // });
+    // console.log(data);
+
     const token = localStorage.getItem("authToken");
     if (token) {
       const tokenUser = jwt_decode(token);
@@ -28,13 +34,13 @@ function LoginStatus({ snsuser }) {
 
   return (
     <div className="loginStatus-container">
-      {snsuser ? (
+      {user ? (
         <ul className="list">
           <li className="listItem">
-            <img src={snsuser.photos[0].value} alt="" className="avatar" />
+            <img src={user.pic} alt="" className="avatar" />
           </li>
-          <li className="listItem">{snsuser.displayName}</li>
-          <Link to="/mypage">
+          <li className="listItem">{user.name}</li>
+          <Link to="/user/mypage">
             <li className="listItem">My page</li>
           </Link>
           <button onClick={logout}>Logout</button>

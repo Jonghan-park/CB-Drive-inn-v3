@@ -6,6 +6,6 @@ const { register, login, mypage } = require("../controller/user");
 
 router.post("/register", register);
 router.post("/login", login);
-router.get("/mypage", protect, mypage);
+router.route("/mypage").get(protect, mypage);
 
 module.exports = router;

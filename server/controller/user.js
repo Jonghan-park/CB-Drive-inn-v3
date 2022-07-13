@@ -60,11 +60,14 @@ const sendUserAndToken = (user, statusCode, res) => {
 };
 
 exports.mypage = async (req, res, next) => {
-  const { _id, name, email } = await User.findById(req.user.id);
-
-  res.status(200).json({
-    id: _id,
-    name,
-    email,
-  });
+  const user = await User.findById(req.user._id);
+  if (user) {
+    res.json({
+      success: true,
+      user,
+    });
+  } else {
+    res.status(404);
+    throw new Error("User not found");
+  }
 };
