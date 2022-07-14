@@ -1,10 +1,10 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useContext } from "react";
 import { UserContext } from "../../App";
 import "./MyPage.css";
 
 function MyPage() {
   const user = useContext(UserContext);
-  console.log(user.user);
+
   return (
     <>
       <div className="myPage">
@@ -17,7 +17,7 @@ function MyPage() {
               <img src={user.user.photos[0].value} alt="avatar in my page" />
             </div>
             <button type="submit" className="submit">
-              Change the profile
+              Order History
             </button>
           </form>
         ) : (

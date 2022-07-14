@@ -2,7 +2,6 @@ import { createContext } from "react";
 import { useState, useEffect } from "react";
 import jwt_decode from "jwt-decode";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import axios from "axios";
 
 import Navbar from "./components/Navbar/Navbar";
 import Footer from "./container/Footer/Footer";
@@ -18,10 +17,7 @@ import Mypage from "./container/MyPage/MyPage";
 export const UserContext = createContext();
 
 function App() {
-  const [user, setUser] = useState({
-    user: undefined,
-    token: undefined,
-  });
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
     const getUser = () => {
@@ -57,6 +53,7 @@ function App() {
         }
       }
     };
+
     getUser();
     isLoggedIn();
   }, []);

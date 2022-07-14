@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from "react";
 import jwt_decode from "jwt-decode";
-import axios from "axios";
 
 import { Link } from "react-router-dom";
 import "../LoginStatus/LoginStatus.css";
 
 function LoginStatus() {
   const [user, setUser] = useState(null);
-
   const logout = () => {
     localStorage.removeItem("authToken");
     window.open("http://localhost:5000/auth/logout", "_self");
@@ -18,6 +16,12 @@ function LoginStatus() {
     if (token) {
       const tokenUser = jwt_decode(token);
       setUser(tokenUser);
+      window.onload = function () {
+        if (!window.location.hash) {
+          window.location = window.location + "#loaded";
+          window.location.reload();
+        }
+      };
       if (!tokenUser) {
         localStorage.removeItem("authToken");
       }

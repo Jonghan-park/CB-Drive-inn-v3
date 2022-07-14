@@ -47,18 +47,6 @@ exports.register = async (req, res) => {
   }
 };
 
-const sendUserAndToken = (user, statusCode, res) => {
-  // Generate a token by using getSignedToken in user model.
-  const token = user.getSignedToken();
-
-  return res.status(statusCode).json({
-    success: true,
-    name: user.name,
-    pic: user.pic,
-    token: token,
-  });
-};
-
 exports.mypage = async (req, res, next) => {
   const user = await User.findById(req.user._id);
   if (user) {
@@ -70,4 +58,16 @@ exports.mypage = async (req, res, next) => {
     res.status(404);
     throw new Error("User not found");
   }
+};
+
+const sendUserAndToken = (user, statusCode, res) => {
+  // Generate a token by using getSignedToken in user model.
+  const token = user.getSignedToken();
+
+  return res.status(statusCode).json({
+    success: true,
+    name: user.name,
+    pic: user.pic,
+    token: token,
+  });
 };

@@ -13,11 +13,11 @@ function Login() {
 
   const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   if (localStorage.getItem("authToken")) {
-  //     navigate("/");
-  //   }
-  // }, []);
+  useEffect(() => {
+    if (localStorage.getItem("authToken")) {
+      navigate("/");
+    }
+  }, []);
 
   const google = () => {
     window.open("http://localhost:5000/auth/google", "_self");
@@ -37,7 +37,7 @@ function Login() {
       console.log(data);
       localStorage.setItem("authToken", data.token);
       alert("Login Successful");
-      navigate("/");
+      window.open("http://localhost:3000/", "_self");
     } catch (error) {
       if (
         error.response &&
