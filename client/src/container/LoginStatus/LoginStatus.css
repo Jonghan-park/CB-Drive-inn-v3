@@ -11,6 +11,9 @@
 .loginStatus-listItem{
   margin-right: 20px;
 }
+.loginStatus-listItem img{
+  margin-right: auto;
+}
 .listbtn{
   margin-right: 50px;
   margin-left: 20px;
