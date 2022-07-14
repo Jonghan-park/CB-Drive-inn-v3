@@ -6,18 +6,17 @@ const User = require("../models/user");
 const CLIENT_URL = "http://localhost:3000/";
 
 router.get("/login/success", async (req, res) => {
-  console.log("I'm in the login success");
-  const token = jwt.sign(
-    {
-      id: req.user.id,
-      name: req.user.displayName,
-      pic: req.user.photos[0].value,
-    },
-    process.env.JWT_SECRET,
-    { expiresIn: "10m" }
-  );
   if (req.user) {
-    localStorage.setItem("authToken", token);
+    const token = jwt.sign(
+      {
+        name: req.user.displayName,
+        email: req.user.email,
+        pic: req.user.photos[0].value,
+      },
+      process.env.JWT_SECRET,
+      { expiresIn: "10m" }
+    );
+    console.log(req.user);
     res.status(200).json({
       success: true,
       meesage: "Success",

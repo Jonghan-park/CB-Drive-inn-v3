@@ -5,7 +5,7 @@ const passport = require("passport");
 const app = express();
 const port = process.env.PORT || 5000;
 require("dotenv").config();
-require("./controller/passport");
+const passportSetup = require("./controller/passport");
 const cors = require("cors");
 const authRoute = require("./routes/auth");
 const mailRoute = require("./routes/mail");

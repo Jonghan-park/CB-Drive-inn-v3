@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import jwt_decode from "jwt-decode";
+import axios from "axios";
 
 import { Link } from "react-router-dom";
 import "../LoginStatus/LoginStatus.css";
@@ -13,11 +14,6 @@ function LoginStatus() {
   };
 
   const getUser = async () => {
-    // const { data } = await axios.get("/login/success").then((response) => {
-    //   console.log(response.data.data);
-    // });
-    // console.log(data);
-
     const token = localStorage.getItem("authToken");
     if (token) {
       const tokenUser = jwt_decode(token);
