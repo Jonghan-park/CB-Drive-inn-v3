@@ -16,12 +16,7 @@ function LoginStatus() {
     if (token) {
       const tokenUser = jwt_decode(token);
       setUser(tokenUser);
-      window.onload = function () {
-        if (!window.location.hash) {
-          window.location = window.location + "#loaded";
-          window.location.reload();
-        }
-      };
+
       if (!tokenUser) {
         localStorage.removeItem("authToken");
       }

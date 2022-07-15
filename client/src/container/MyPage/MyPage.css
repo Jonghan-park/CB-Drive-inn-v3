@@ -34,3 +34,6 @@
 .myPagePic img{
   width: 80%;
 }
+.userEmail{
+  text-transform: lowercase;
+}

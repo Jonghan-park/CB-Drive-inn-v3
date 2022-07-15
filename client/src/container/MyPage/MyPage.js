@@ -24,7 +24,7 @@ function MyPage() {
           <form className="myPage-form">
             <h2>Hello, {user.user.name}!</h2>
             <h3>Your Email:</h3>
-            <h4>{user.user.email}</h4>
+            <h4 className="userEmail">{user.user.email}</h4>
             <div className="myPagePic">
               <img src={user.user.pic} alt="avatar in my page" />
             </div>

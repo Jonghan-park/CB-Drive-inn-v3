@@ -12,12 +12,12 @@ module.exports = async (name, email, message) => {
       pass: process.env.REACT_APP_GMAIL_PASSWORD,
     },
   });
-  console.log(process.env.REACT_APP_GMAIL_ADDRESS);
+
   const mailOption = {
     from: name,
     to: process.env.REACT_APP_GMAIL_ADDRESS,
     subject: "The message from CB Drive inn web application",
-    html: `You got a message from <br /> 
+    html: `You got a message <br /> 
       Email : ${email} <br />
       Name: ${name} <br />
       Message: ${message}`,
