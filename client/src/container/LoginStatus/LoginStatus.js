@@ -1,11 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import jwt_decode from "jwt-decode";
+import { Badge } from "react-bootstrap";
 
 import { Link } from "react-router-dom";
 import "../LoginStatus/LoginStatus.css";
+import { Store } from "../../Store";
 
 function LoginStatus() {
   const [user, setUser] = useState(null);
+  const { state } = useContext(Store);
+  const { cart } = state;
+
   const logout = () => {
     localStorage.removeItem("authToken");
     window.open("http://localhost:5000/auth/logout", "_self");
@@ -29,6 +34,17 @@ function LoginStatus() {
 
   return (
     <div className="loginStatus-container">
+      <ul className="cart-box">
+        <Link to="/cart" className="cart-link">
+          Cart
+          {cart.cartItems.length > 0 && (
+            <Badge pill bg="danger">
+              {cart.cartItems.length}
+            </Badge>
+          )}
+        </Link>
+      </ul>
+
       {user ? (
         <ul className="loginStatus-list">
           <li className="loginStatus-listItem">

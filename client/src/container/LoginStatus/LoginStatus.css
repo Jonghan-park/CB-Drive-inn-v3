@@ -1,6 +1,9 @@
 .loginStatus-container{
   background-color: black;
   width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
 }
 .loginStatus-list{
   display: flex;
@@ -31,6 +34,23 @@
   font-size: 1.2rem;
   color: white;
   padding: 0 2rem;
+}
+.cart-box{
+  display: flex;
+  flex-direction: row;
+}
+.cart-link{
+  text-decoration: none;
+  color: aliceblue;
+  border: 2px solid white;
+  padding: 0.5rem 1rem 0.5rem 1rem;
+  border-radius: 20%;
+  margin-bottom: 20px;
+  
+}
+.cart-link:hover{
+ background:  rgb(239, 139, 45);
+color: white;
 }
 
 .avatar{
