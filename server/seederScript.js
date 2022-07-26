@@ -1,7 +1,7 @@
 require("dotenv").config();
 
-const menusData = require("../client/src/data/data");
-const connectDB = require("./config/db");
+const menusData = require("./data/data");
+const connectDB = require("./Database/db");
 const Menu = require("./models/Menu");
 
 connectDB();
@@ -14,6 +14,8 @@ const importData = async () => {
 
     process.exit();
   } catch (error) {
+    console.log(error);
+
     console.error("Error with data import");
     process.exit(1);
   }

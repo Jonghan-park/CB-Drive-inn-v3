@@ -4,12 +4,9 @@ import { Badge } from "react-bootstrap";
 
 import { Link } from "react-router-dom";
 import "../LoginStatus/LoginStatus.css";
-import { Store } from "../../Store";
 
 function LoginStatus() {
   const [user, setUser] = useState(null);
-  const { state } = useContext(Store);
-  const { cart } = state;
 
   const logout = () => {
     localStorage.removeItem("authToken");
@@ -34,7 +31,7 @@ function LoginStatus() {
 
   return (
     <div className="loginStatus-container">
-      <ul className="cart-box">
+      {/* <ul className="cart-box">
         <Link to="/cart" className="cart-link">
           Cart
           {cart.cartItems.length > 0 && (
@@ -43,7 +40,7 @@ function LoginStatus() {
             </Badge>
           )}
         </Link>
-      </ul>
+      </ul> */}
 
       {user ? (
         <ul className="loginStatus-list">

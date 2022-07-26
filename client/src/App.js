@@ -8,6 +8,7 @@ import Footer from "./container/Footer/Footer";
 import Main from "./container/Main/Main";
 import Contact from "./container/Contact/Contact";
 import About from "./container/About/About";
+import Cart from "./container/Cart/Cart";
 import Menu from "./components/MenuItem/Menus";
 import Login from "./container/Login/Login";
 import Register from "./container/Register/Register";
@@ -69,6 +70,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/user/mypage" element={<Mypage />} />
+            <Route path="/cart" element={<Cart />} />
             <Route path="/menu" element={<Menu />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />

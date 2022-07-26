@@ -1,8 +1,8 @@
 const Menu = require("../models/Menu");
 const router = require("express").Router();
 
-router.get("/cart/:id", (req, res) => {
-  const selectedProduct = Menu.findById(req.params.id);
+router.get("/cart/:id", async (req, res) => {
+  const selectedProduct = await Menu.findById(req.params.id);
   if (selectedProduct) {
     res.json(selectedProduct);
   } else {

@@ -1,27 +1,8 @@
 import React, { useContext } from "react";
 import { FaCartPlus } from "react-icons/fa";
-import { Store } from "../../Store";
-import axios from "axios";
 
 const Menu = ({ items }) => {
-  const { state, dispatch: ctxDispatch } = useContext(Store);
-  const { cart } = state;
-
-  const addToCartHandler = async () => {
-    console.log(items);
-    const existItem = cart.cartItems.find((x) => x.id === items.id);
-
-    const quantity = existItem ? existItem.quantity + 1 : 1;
-    // const { data } = await axios.get(`/order/cart/${items.id}`);
-    if (!items.InStock) {
-      window.alert("Sorry. Product is out of stock");
-    } else {
-      ctxDispatch({
-        type: "CART_ADD_ITEM",
-        payload: { ...items, quantity: 1 },
-      });
-    }
-  };
+  const addToCartHandler = async () => {};
   return (
     <div className="section-center">
       {items.map((menuItem) => {
