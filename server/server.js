@@ -4,6 +4,7 @@ const cookieParser = require("cookie-parser");
 const passport = require("passport");
 const app = express();
 const port = process.env.PORT || 5000;
+const path = require("path");
 require("dotenv").config();
 const passportSetup = require("./controller/passport");
 const cors = require("cors");
@@ -42,6 +43,12 @@ app.use("/auth", authRoute);
 app.use("/contact", mailRoute);
 app.use("/user", userRoute);
 app.use("/order", orderRoute);
+
+const __dirname = path.resolve();
+app.use(express.static(path.join(__dirname, "client/build")));
+app.get("*", (req, res) =>
+  res.sendFile(path.join(__dirname, "client/build/index.html"))
+);
 
 app.listen(port, () => {
   console.log(`App is listening on port ${port}`);
