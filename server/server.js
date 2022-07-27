@@ -44,11 +44,11 @@ app.use("/contact", mailRoute);
 app.use("/user", userRoute);
 app.use("/order", orderRoute);
 
-const __dirname = path.resolve();
-app.use(express.static(path.join(__dirname, "client/build")));
-app.get("*", (req, res) =>
-  res.sendFile(path.join(__dirname, "client/build/index.html"))
-);
+// const __dirname = path.resolve();
+// app.use(express.static(path.join(__dirname, "client/build")));
+// app.get("*", (req, res) =>
+//   res.sendFile(path.join(__dirname, "client/build/index.html"))
+// );
 
 app.listen(port, () => {
   console.log(`App is listening on port ${port}`);

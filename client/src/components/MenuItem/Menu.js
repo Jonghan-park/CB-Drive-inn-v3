@@ -1,9 +1,7 @@
 import React, { useContext } from "react";
 import { FaCartPlus } from "react-icons/fa";
 
-const Menu = ({ items, props }) => {
-  const addToCartHandler = async () => {};
-  console.log(props);
+const Menu = ({ items }) => {
   return (
     <div className="section-center">
       {items.map((menuItem) => {
@@ -18,7 +16,7 @@ const Menu = ({ items, props }) => {
               </header>
               <p className="item-text">{desc}</p>
               <div className="cart-icon-container">
-                <button onClick={addToCartHandler} className="cartBtn">
+                <button className="cartBtn">
                   <FaCartPlus className="cart-icon" />
                 </button>
               </div>
@@ -28,12 +26,6 @@ const Menu = ({ items, props }) => {
       })}
     </div>
   );
-};
-
-const mapStateToProps = (state) => {
-  return {
-    cartItems: state.cartItems,
-  };
 };
 
 export default Menu;

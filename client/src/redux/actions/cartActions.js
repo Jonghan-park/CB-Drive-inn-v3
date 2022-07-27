@@ -1,19 +1,33 @@
 import * as actionTypes from "../constants/cartConstants";
-import axios from "axios";
-export const addToCart = (id, qty) => async (dispatch, getState) => {
-  const { data } = await axios.get(`/order/cart/${id}`);
-  console.log(data);
-  dispatch({
+export const addToCart = (menuId) => {
+  return {
     tpye: actionTypes.ADD_TO_CART,
     payload: {
-      product: data._id,
-      name: data.name,
-      imageUrl: data.imageUrl,
-      price: data.price,
-      countInStock: data.countInStock,
-      qty,
+      id: menuId,
     },
-  });
+  };
+};
+export const removeFromCart = (menuId) => {
+  return {
+    tpye: actionTypes.REMOVE_FROM_CART,
+    payload: {
+      id: menuId,
+    },
+  };
+};
+export const adjustQty = (menuId, value) => {
+  return {
+    tpye: actionTypes.ADJUST_QTY,
+    payload: {
+      id: menuId,
+      qty: value,
+    },
+  };
+};
 
-  localStorage.setItem("cart", JSON.stringify(getState().cart.cartItems));
+export const loadCurrentItem = (item) => {
+  return {
+    tpye: actionTypes.LOAD_CURRENT_ITEM,
+    payload: item,
+  };
 };
