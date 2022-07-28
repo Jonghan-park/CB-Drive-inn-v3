@@ -1,9 +1,16 @@
 import * as actionTypes from "../constants/cartConstants";
-export const addToCart = (menuId) => {
+import axios from "axios";
+export const addToCart = async (menuId) => {
+  const { data } = await axios.get(`/order/cart/${menuId}`);
   return {
     tpye: actionTypes.ADD_TO_CART,
     payload: {
-      id: menuId,
+      product: data._id,
+      name: data.name,
+      imageUrl: data.imageUrl,
+      price: data.price,
+      countInStock: data.countInStock,
+      qty: 0,
     },
   };
 };

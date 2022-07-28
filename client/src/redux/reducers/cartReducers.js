@@ -9,7 +9,21 @@ const INITIAL_STATE = {
 export const cartReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case actionTypes.ADD_TO_CART:
-      return {};
+      // Check exist item in cart
+      const item = action.payload;
+      const existItem = state.cart.find((item) =>
+        item.product === action.payload.product ? true : false
+      );
+      return {
+        ...state,
+        cart: existItem
+          ? state.cart.map((item) =>
+              item.product === action.payload.product
+                ? { ...item, qty: item.qty + 1 }
+                : item
+            )
+          : [...state.cart, { ...item, qty: 1 }],
+      };
     case actionTypes.REMOVE_FROM_CART:
       return {};
     case actionTypes.ADJUST_QTY:
