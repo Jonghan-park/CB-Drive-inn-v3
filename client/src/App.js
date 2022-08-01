@@ -14,6 +14,7 @@ import Login from "./container/Login/Login";
 import Register from "./container/Register/Register";
 import LoginStatus from "./container/LoginStatus/LoginStatus";
 import Mypage from "./container/MyPage/MyPage";
+import CartProvider from "./store/CartProvider";
 
 export const UserContext = createContext();
 
@@ -62,21 +63,23 @@ function App() {
   return (
     <div className="backgroundColor">
       <Router>
-        <Navbar />
-        <UserContext.Provider value={{ user, setUser }}>
-          <LoginStatus />
-          <Routes>
-            <Route path="/" element={<Main />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/user/mypage" element={<Mypage />} />
-            <Route path="/cart" element={<Cart />} />
-            <Route path="/menu" element={<Menu />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/contact" element={<Contact />} />
-          </Routes>
-        </UserContext.Provider>
-        <Footer />
+        <CartProvider>
+          <Navbar />
+          <UserContext.Provider value={{ user, setUser }}>
+            <LoginStatus />
+            <Routes>
+              <Route path="/" element={<Main />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/register" element={<Register />} />
+              <Route path="/user/mypage" element={<Mypage />} />
+              <Route path="/cart" element={<Cart />} />
+              <Route path="/menu" element={<Menu />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/contact" element={<Contact />} />
+            </Routes>
+          </UserContext.Provider>
+          <Footer />
+        </CartProvider>
       </Router>
     </div>
   );

@@ -1,10 +1,13 @@
 import React, { useContext } from "react";
 import { FaCartPlus } from "react-icons/fa";
+import CartContext from "../../store/cart-context";
 
-import { connect } from "react-redux";
-import { addToCart } from "../../redux/actions/cartActions";
+const Menu = ({ items, onAddToCart }) => {
+  const cartCtx = useContext(CartContext);
 
-const Menu = ({ items, addToCart }) => {
+  const addToCart = (id, title, price) => {
+    onAddToCart(id, title, price);
+  };
   return (
     <div className="section-center">
       {items.map((menuItem) => {
@@ -19,7 +22,10 @@ const Menu = ({ items, addToCart }) => {
               </header>
               <p className="item-text">{desc}</p>
               <div className="cart-icon-container">
-                <button onClick={() => addToCart()} className="cartBtn">
+                <button
+                  onClick={() => addToCart(id, title, price)}
+                  className="cartBtn"
+                >
                   <FaCartPlus className="cart-icon" />
                 </button>
               </div>
@@ -31,10 +37,4 @@ const Menu = ({ items, addToCart }) => {
   );
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    addToCart: (id) => dispatch(addToCart(id)),
-  };
-};
-
-export default connect(null, mapDispatchToProps)(Menu);
+export default Menu;

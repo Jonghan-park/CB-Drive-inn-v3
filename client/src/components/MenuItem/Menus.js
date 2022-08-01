@@ -1,18 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import Menu from "./Menu";
 import Categories from "./Categories";
-import { connect, useDispatch, useSelector } from "react-redux";
 import items from "../../data/data";
 import "../MenuItem/MenuStyle.css";
-import { getProducts as listProducts } from "../../redux/actions/productAction";
+import CartContext from "../../store/cart-context";
 
 const allCategories = ["all", ...new Set(items.map((item) => item.category))];
 
-const Menus = () => {
-  const dispatch = useDispatch();
-  const getProducts = useSelector((state) => state.getProducts);
-  const { products, loading, error } = getProducts;
-  console.log(products);
+const Menus = (props) => {
+  const cartCtx = useContext(CartContext);
   const [menuItems, setMenuItems] = useState(items);
   const [categories, setCategories] = useState(allCategories);
 
@@ -24,10 +20,15 @@ const Menus = () => {
     const newItems = items.filter((item) => item.category === category);
     setMenuItems(newItems);
   };
-
-  useEffect(() => {
-    dispatch(listProducts());
-  }, []);
+  const addItemToCart = (id, title, price) => {
+    cartCtx.addItem({
+      id,
+      title: title,
+      amount: 1,
+      price: price,
+    });
+    console.log(title, price);
+  };
 
   return (
     <main>
@@ -37,16 +38,10 @@ const Menus = () => {
           <div className="underline"></div>
         </div>
         <Categories categories={categories} filterItems={filterItems} />
-        <Menu items={menuItems} />
+        <Menu items={menuItems} onAddToCart={addItemToCart} />
       </section>
     </main>
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    products: state.cart.products,
-  };
-};
-
-export default connect(mapStateToProps)(Menus);
+export default Menus;

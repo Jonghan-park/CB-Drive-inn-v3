@@ -4,9 +4,15 @@ import { Badge } from "react-bootstrap";
 
 import { Link } from "react-router-dom";
 import "../LoginStatus/LoginStatus.css";
+import CartContext from "../../store/cart-context";
 
 function LoginStatus() {
   const [user, setUser] = useState(null);
+  const cartCtx = useContext(CartContext);
+  const { items } = cartCtx;
+  const numberOfCartItems = items.reduce((curNumber, item) => {
+    return curNumber + item.amount;
+  }, 0);
 
   const logout = () => {
     localStorage.removeItem("authToken");
@@ -31,16 +37,16 @@ function LoginStatus() {
 
   return (
     <div className="loginStatus-container">
-      {/* <ul className="cart-box">
+      <ul className="cart-box">
         <Link to="/cart" className="cart-link">
           Cart
-          {cart.cartItems.length > 0 && (
+          {items.length > 0 && (
             <Badge pill bg="danger">
-              {cart.cartItems.length}
+              {numberOfCartItems}
             </Badge>
           )}
         </Link>
-      </ul> */}
+      </ul>
 
       {user ? (
         <ul className="loginStatus-list">
