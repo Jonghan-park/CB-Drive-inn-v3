@@ -1,8 +1,18 @@
 # CB-Drive-inn-v3
----  
+---
+
+#Period
+Jun, 2022 ~ current
+---
+
+#Environment
+
+--- 
+
 # Temporary URL
 https://cb-drive-inn.netlify.app/ 
----  
+---
+
 # Sample Screen shot
 ### Main page
 ![Screen Shot 2022-07-31 at 7 07 37 PM](https://user-images.githubusercontent.com/90344204/182054130-5bcf8a81-662b-4674-aa48-8a9eb84cb10c.png)
