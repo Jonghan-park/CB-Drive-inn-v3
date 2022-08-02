@@ -3,7 +3,7 @@ import jwt_decode from "jwt-decode";
 import { Badge } from "react-bootstrap";
 
 import { Link } from "react-router-dom";
-import "../LoginStatus/LoginStatus.css";
+import "./LoginStatus.css";
 import CartContext from "../../store/cart-context";
 
 function LoginStatus() {

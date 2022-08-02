@@ -34,7 +34,13 @@ app.use(
 );
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(cors());
+app.use(
+  cors({
+    origin: "http://localhost:3000",
+    methods: "GET,POST,PUT,DELETE",
+    credentials: true,
+  })
+);
 
 // Routes
 app.use("/auth", authRoute);
@@ -43,11 +49,11 @@ app.use("/user", userRoute);
 app.use("/order", orderRoute);
 app.use("/get", productRoute);
 
-const __dirname = path.resolve();
-app.use(express.static(path.join(__dirname, "client/build")));
-app.get("*", (req, res) =>
-  res.sendFile(path.join(__dirname, "client/build/index.html"))
-);
+// const __dirname = path.resolve();
+// app.use(express.static(path.join(__dirname, "client/build")));
+// app.get("*", (req, res) =>
+//   res.sendFile(path.join(__dirname, "client/build/index.html"))
+// );
 
 app.listen(port, () => {
   console.log(`App is listening on port ${port}`);

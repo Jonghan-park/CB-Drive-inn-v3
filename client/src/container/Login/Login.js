@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 import axios from "axios";
-import "../Login/Login.css";
+import "./Login.css";
 import Google from "../../images/google.png";
 import Github from "../../images/github.png";
 import { useNavigate, Link } from "react-router-dom";

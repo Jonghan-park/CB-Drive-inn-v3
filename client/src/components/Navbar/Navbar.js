@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { MdOutlineRestaurantMenu } from "react-icons/md";
 import logo from "../../images/logo.png";
-import "../Navbar/Navbar.css";
+import "./Navbar.css";
 
 function Navbar() {
   const [toggleMenu, setToggleMenu] = useState(false);

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../SendEmail/SendEmail.css";
+import "./SendEmail.css";
 
 export default function SendEmail() {
   const [values, setValues] = useState({

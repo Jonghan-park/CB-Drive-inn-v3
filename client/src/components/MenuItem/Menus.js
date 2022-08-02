@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import Menu from "./Menu";
 import Categories from "./Categories";
 import items from "../../data/data";
-import "../MenuItem/MenuStyle.css";
+import "./MenuStyle.css";
 import CartContext from "../../store/cart-context";
 
 const allCategories = ["all", ...new Set(items.map((item) => item.category))];
