@@ -44,7 +44,6 @@ function App() {
           console.log(err);
         });
     };
-
     const isLoggedIn = async () => {
       const token = localStorage.getItem("authToken");
       if (token) {
