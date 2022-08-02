@@ -5,8 +5,16 @@ import CartContext from "../../store/cart-context";
 const Menu = ({ items, onAddToCart }) => {
   const cartCtx = useContext(CartContext);
 
-  const addToCart = (id, title, price) => {
-    onAddToCart(id, title, price);
+  const findItemById = (id) => {
+    const { item } = items.findIndex((x) => x.id === id);
+    console.log(item);
+    return item;
+  };
+
+  const addToCart = (id, title, price, img) => {
+    // const foundItem = findItemById(id);
+
+    onAddToCart(id, title, price, img);
   };
   return (
     <div className="section-center">
@@ -23,7 +31,7 @@ const Menu = ({ items, onAddToCart }) => {
               <p className="item-text">{desc}</p>
               <div className="cart-icon-container">
                 <button
-                  onClick={() => addToCart(id, title, price)}
+                  onClick={() => addToCart(id, title, price, img)}
                   className="cartBtn"
                 >
                   <FaCartPlus className="cart-icon" />

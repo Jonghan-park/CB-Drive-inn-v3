@@ -20,15 +20,19 @@ const Menus = (props) => {
     const newItems = items.filter((item) => item.category === category);
     setMenuItems(newItems);
   };
-  const addItemToCart = (id, title, price) => {
+  const addItemToCart = (id, title, price, img) => {
     cartCtx.addItem({
       id,
       title: title,
       amount: 1,
       price: price,
+      img,
     });
-    console.log(title, price);
   };
+
+  const removeItemFromCart = (item) => {
+    cartCtx
+  }
 
   return (
     <main>
