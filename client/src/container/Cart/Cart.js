@@ -29,7 +29,7 @@ const Cart = () => {
           />
         ))}
 
-        <hr />
+        <hr className="cart-line" />
         <div className="cart-checkout">
           <div className="subtotal">Sub-Total</div>
           <div className="total-amount">${totalAmount}</div>
