@@ -31,11 +31,18 @@ const CartItem = (props) => {
           +
         </button>
       </div>
-
-      <h2>{price}</h2>
-      <button onClick={() => removeItemHandler(props.item)} variant="light">
-        Remove
-      </button>
+      <div className="cart-prices">
+        <div className="cart-amount">{price}</div>
+        <div>
+          <button
+            className="cart-remove"
+            onClick={() => removeItemHandler(props.item)}
+            variant="light"
+          >
+            Remove
+          </button>
+        </div>
+      </div>
     </div>
   );
 };
