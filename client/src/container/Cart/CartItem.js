@@ -1,21 +1,39 @@
-import React from "react";
+import React, { useContext } from "react";
+import CartContext from "../../store/cart-context";
+import "./CartItem.css";
 
 const CartItem = (props) => {
+  const cartCtx = useContext(CartContext);
+
+  const removeItemHandler = (item) => {
+    cartCtx.removeItem(item);
+  };
+
   const price = `$${props.item.price.toFixed(2)}`;
   return (
-    <div>
-      <img src={props.item.img} alt={props.item.title} />
-      <h2>{props.item.title}</h2>
-      <div>
-        <button disabled={props.item.amount === 1} onClick={props.onRemove}>
+    <div className="cart-items">
+      <div className="image-box">
+        <img src={props.item.img} alt={props.item.title} />
+      </div>
+      <div className="cart-about">
+        <h1 className="cart-title">{props.item.title}</h1>
+      </div>
+      <div className="cart-counter">
+        <button
+          className="cart-btn"
+          disabled={props.item.amount === 1}
+          onClick={props.onRemove}
+        >
           -
         </button>
-        <h2>{props.item.amount}</h2>
-        <button onClick={props.onAdd}>+</button>
+        <div className="cart-count">{props.item.amount}</div>
+        <button className="cart-btn" onClick={props.onAdd}>
+          +
+        </button>
       </div>
 
       <h2>{price}</h2>
-      <button onClick={() => removeItemHandler(propsitem)} variant="light">
+      <button onClick={() => removeItemHandler(props.item)} variant="light">
         Remove
       </button>
     </div>

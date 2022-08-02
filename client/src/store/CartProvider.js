@@ -32,7 +32,7 @@ const cartReducer = (state, action) => {
       totalAmount: updatedTotalAmount,
     };
   }
-  if (action.type === "REMOVE_ITEM") {
+  if (action.type === "DECREMENT_ITEM") {
     const existingCartItemIndex = state.items.findIndex(
       (item) => item.id === action.id
     );
@@ -46,6 +46,16 @@ const cartReducer = (state, action) => {
       updatedItems = [...state.items];
       updatedItems[existingCartItemIndex] = updatedItem;
     }
+    return {
+      items: updatedItems,
+      totalAmount: updatedTotalAmount,
+    };
+  }
+  if (action.type === "REMOVE_ITEM") {
+    const updatedItems = state.items.filter(
+      (item) => item.id !== action.item.id
+    );
+    const updatedTotalAmount = state.totalAmount - action.item.price * action.item.amount;
     return {
       items: updatedItems,
       totalAmount: updatedTotalAmount,
@@ -65,10 +75,16 @@ const CartProvider = (props) => {
       item: item,
     });
   };
-  const removeItemFromCartHandler = (id) => {
+  const decrementItemInCartHandler = (id) => {
+    dispatchCartAction({
+      type: "DECREMENT_ITEM",
+      id: id,
+    });
+  };
+  const removeItemInCartHandler = (item) => {
     dispatchCartAction({
       type: "REMOVE_ITEM",
-      id: id,
+      item: item,
     });
   };
 
@@ -76,7 +92,8 @@ const CartProvider = (props) => {
     items: cartState.items,
     totalAmount: cartState.totalAmount,
     addItem: addItemToCartHandler,
-    removeItem: removeItemFromCartHandler,
+    decrementItem: decrementItemInCartHandler,
+    removeItem: removeItemInCartHandler,
   };
   return (
     <CartContext.Provider value={cartContext}>

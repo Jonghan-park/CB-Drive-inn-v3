@@ -30,10 +30,6 @@ const Menus = (props) => {
     });
   };
 
-  const removeItemFromCart = (item) => {
-    cartCtx
-  }
-
   return (
     <main>
       <section className="menu section">
