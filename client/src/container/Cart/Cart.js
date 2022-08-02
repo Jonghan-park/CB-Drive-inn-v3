@@ -30,7 +30,13 @@ const Cart = () => {
             onAdd={cartItemIncrementHandler.bind(null, item)}
           />
         ))}
-        <h1>${totalAmount}</h1>
+
+        <hr />
+        <div className="cart-checkout">
+          <div className="subtotal">Sub-Total</div>
+          <div className="total-amount">${totalAmount}</div>
+          <button className="checkout-button">Checkout</button>
+        </div>
       </div>
     </div>
   );

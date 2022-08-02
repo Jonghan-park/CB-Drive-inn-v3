@@ -58,8 +58,14 @@
   color: #202020;
  }
  .cart-prices{
+   display: flex;
+   flex-direction: column;
+   flex-wrap: wrap;
+   justify-content: center;
+   align-content: center;
   height: 100%;
   text-align: right;
+  align-items: center;
  }
  .cart-amount{
   padding-top: 20px;
