@@ -79,18 +79,18 @@ function Login() {
           <div className="link-to-register">
             Don't have an account? <Link to="/register">Register</Link>
           </div>
+          <div className="social-media">
+            {error && <span>{error}</span>}
+            <ul>
+              <li className="google-container" onClick={google}>
+                <img src={Google} alt="google" />
+              </li>
+              <li className="github-container" onClick={github}>
+                <img src={Github} alt="github" />
+              </li>
+            </ul>
+          </div>
         </form>
-        <div className="social-media">
-          {error && <span>{error}</span>}
-          <ul>
-            <li onClick={google}>
-              <img src={Google} alt="google" />
-            </li>
-            <li onClick={github}>
-              <img src={Github} alt="github" />
-            </li>
-          </ul>
-        </div>
       </div>
     </>
   );

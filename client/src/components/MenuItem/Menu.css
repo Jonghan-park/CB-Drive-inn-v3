@@ -1,0 +1,19 @@
+.cart-icon-container{
+  display: flex;
+  justify-content: flex-end;
+}
+.cartBtn{
+  background: none;
+  cursor: pointer;
+  border: none;
+}
+
+.cart-icon:hover{
+  color: white;
+}
+.cart-icon{
+  width: 40px;
+  height: auto;
+  color: rgb(239, 139, 45);
+  
+}

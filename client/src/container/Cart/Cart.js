@@ -17,11 +17,9 @@ const Cart = () => {
 
   return (
     <div className="cart">
+      <h3 className="cartTitle">Order Cart</h3>
+      <div className="underline" />
       <div className="cart-container">
-        <div className="cart-header">
-          <h3 className="cart-heading">Order Cart</h3>
-        </div>
-
         {cartCtx.items.map((item) => (
           <CartItem
             key={item.id}

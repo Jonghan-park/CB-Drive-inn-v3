@@ -41,9 +41,7 @@ function LoginStatus() {
         <Link to="/cart" className="cart-link">
           Cart
           {items.length > 0 && (
-            <Badge pill bg="danger">
-              {numberOfCartItems}
-            </Badge>
+            <span className="cart-badge">{numberOfCartItems}</span>
           )}
         </Link>
       </ul>

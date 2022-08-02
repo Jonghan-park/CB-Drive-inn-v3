@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { FaCartPlus } from "react-icons/fa";
 import CartContext from "../../store/cart-context";
+import "./Menu.css";
 
 const Menu = ({ items, onAddToCart }) => {
   const cartCtx = useContext(CartContext);
