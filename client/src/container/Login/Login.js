@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-import { axiosInstance } from "../../config";
+import axios from "axios";
 import "./Login.css";
 import Google from "../../images/google.png";
 import Github from "../../images/github.png";
@@ -20,27 +20,24 @@ function Login() {
   }, []);
 
   const google = () => {
-    // window.open("http://localhost:5000/auth/google", "_self");
-    window.open("https://cb-drive-inn.herokuapp.com/auth/google", "_self");
+    window.open("http://localhost:5000/auth/google", "_self");
   };
 
   const github = () => {
-    // window.open("http://localhost:5000/auth/github", "_self");
-    window.open("https://cb-drive-inn.herokuapp.com/auth/google", "_self");
+    window.open("http://localhost:5000/auth/github", "_self");
   };
 
   const loginHandler = async (e) => {
     e.preventDefault();
     try {
-      const { data } = await axiosInstance.post("/user/login", {
+      const { data } = await axios.post("/user/login", {
         email,
         password,
       });
       console.log(data);
       localStorage.setItem("authToken", data.token);
       alert("Login Successful");
-      // window.open("http://localhost:3000/", "_self");
-      window.open("https://cb-drive-inn.herokuapp.com/", "_self");
+      window.open("http://localhost:3000/", "_self");
     } catch (error) {
       if (
         error.response &&
