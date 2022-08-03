@@ -36,7 +36,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: "https://cb-drive-inn.herokuapp.com/",
     methods: "GET,POST,PUT,DELETE",
     credentials: true,
   })
@@ -50,9 +50,9 @@ app.use("/order", orderRoute);
 app.use("/get", productRoute);
 
 // const __dirname = path.resolve();
-app.use(express.static("client/build"));
+app.use(express.static(path.join(__dirname, "/client/build")));
 app.get("*", (req, res) =>
-  res.sendFile(path.resolve(__dirname, "../client", "build", "index.html"))
+  res.sendFile(path.join(__dirname, "/client/build", "index.html"))
 );
 
 app.listen(port, () => {

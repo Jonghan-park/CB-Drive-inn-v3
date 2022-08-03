@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import axios from "axios";
+import { axiosInstance } from "../../config";
 import { Link, useNavigate } from "react-router-dom";
 import "./Register.css";
 
@@ -29,7 +29,7 @@ function Register() {
       return setError("Passwords do not match");
     }
     try {
-      const { data } = await axios.post(
+      const { data } = await axiosInstance.post(
         "/user/register",
         { name, email, password },
         config

@@ -16,7 +16,8 @@ function LoginStatus() {
 
   const logout = () => {
     localStorage.removeItem("authToken");
-    window.open("http://localhost:5000/auth/logout", "_self");
+    // window.open("http://localhost:5000/auth/logout", "_self");
+    window.open("https://cb-drive-inn.herokuapp.com/auth/logout", "_self");
   };
 
   const getUser = async () => {
