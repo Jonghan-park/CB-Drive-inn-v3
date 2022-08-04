@@ -34,7 +34,7 @@ function Register() {
         { name, email, password },
         config
       );
-      localStorage.setItem("authToken", data.token);
+      // localStorage.setItem("authToken", data.token);
       navigate("/login");
     } catch (error) {
       setError(error.response.data.error);

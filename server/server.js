@@ -9,7 +9,7 @@ require("dotenv").config();
 const passportSetup = require("./controller/passport");
 const cors = require("cors");
 // DB
-const connection = require("../server/Database/db");
+const connection = require("./Database/db");
 
 // Route
 const authRoute = require("./routes/auth");
@@ -36,7 +36,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: "https://cb-drive-inn.herokuapp.com/",
     methods: "GET,POST,PUT,DELETE",
     credentials: true,
   })
