@@ -1,4 +1,4 @@
-const Menu = require("../models/Menu");
+const Menu = require("../models/menu");
 const router = require("express").Router();
 
 router.get("/cart/:id", async (req, res) => {

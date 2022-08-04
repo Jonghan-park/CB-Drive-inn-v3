@@ -49,11 +49,17 @@ app.use("/user", userRoute);
 app.use("/order", orderRoute);
 app.use("/get", productRoute);
 
-// const __dirname = path.resolve();
-app.use(express.static(path.join(__dirname, "/client/build")));
-app.get("*", (req, res) =>
-  res.sendFile(path.join(__dirname, "/client/build", "index.html"))
-);
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, "/client/build")));
+
+  app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+  });
+} else {
+  app.get("/", (req, res) => {
+    res.send("API running");
+  });
+}
 
 app.listen(port, () => {
   console.log(`App is listening on port ${port}`);
