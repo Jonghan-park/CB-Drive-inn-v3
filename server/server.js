@@ -36,7 +36,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(
   cors({
-    origin: "https://cb-drive-inn.herokuapp.com/",
+    origin: "https://cb-drive-inn.herokuapp.com",
     methods: "GET,POST,PUT,DELETE",
     credentials: true,
   })
