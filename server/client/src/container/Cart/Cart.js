@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useState, useContext } from "react";
 import CartContext from "../../store/cart-context";
 import CartItem from "./CartItem";
 import "./Cart.css";
@@ -21,23 +21,30 @@ const Cart = () => {
       <h3 className="cartTitle">Order Cart</h3>
       <div className="underline" />
       <div className="cart-container">
-        {cartCtx.items.map((item) => (
-          <CartItem
-            key={item.id}
-            item={item}
-            onRemove={cartItemDecrementHandler.bind(null, item.id)}
-            onAdd={cartItemIncrementHandler.bind(null, item)}
-          />
-        ))}
-
-        <hr className="cart-line" />
-        <div className="cart-checkout">
-          <div className="subtotal">Sub-Total</div>
-          <div className="total-amount">${totalAmount}</div>
-          <Link to="/cart/summary" className="checkout-button">
-            Checkout
-          </Link>
-        </div>
+        {cartCtx.items.length === 0 ? (
+          <h3 className="empty-msg">
+            Your cart is empty. <Link to="/menu">Go to menu</Link>
+          </h3>
+        ) : (
+          cartCtx.items.map((item) => (
+            <>
+              <CartItem
+                key={item.id}
+                item={item}
+                onRemove={cartItemDecrementHandler.bind(null, item.id)}
+                onAdd={cartItemIncrementHandler.bind(null, item)}
+              />
+              <hr className="cart-line" />
+              <div className="cart-checkout">
+                <div className="subtotal">Sub-Total</div>
+                <div className="total-amount">${totalAmount}</div>
+                <Link to="/cart/summary" className="checkout-button">
+                  Checkout
+                </Link>
+              </div>
+            </>
+          ))
+        )}
       </div>
     </div>
   );
