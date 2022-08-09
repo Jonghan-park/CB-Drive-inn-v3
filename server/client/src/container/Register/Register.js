@@ -29,18 +29,14 @@ function Register() {
       return setError("Passwords do not match");
     }
     try {
-      const { data } = await axios.post(
-        "/user/register",
-        { name, email, password },
-        config
-      );
-      // localStorage.setItem("authToken", data.token);
+      await axios.post("/user/register", { name, email, password }, config);
+      alert("Register Successfully");
       navigate("/login");
     } catch (error) {
       setError(error.response.data.error);
       setTimeout(() => {
         setError("");
-      }, 5000);
+      }, 3000);
     }
   };
 
