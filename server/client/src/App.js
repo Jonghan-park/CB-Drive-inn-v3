@@ -15,6 +15,7 @@ import Register from "./container/Register/Register";
 import LoginStatus from "./container/LoginStatus/LoginStatus";
 import Mypage from "./container/MyPage/MyPage";
 import CartProvider from "./store/CartProvider";
+import Summary from "./container/Summary/Summary";
 
 export const UserContext = createContext();
 
@@ -72,6 +73,7 @@ function App() {
               <Route path="/register" element={<Register />} />
               <Route path="/user/mypage" element={<Mypage />} />
               <Route path="/cart" element={<Cart />} />
+              <Route path="/cart/summary" element={<Summary />} />
               <Route path="/menu" element={<Menu />} />
               <Route path="/about" element={<About />} />
               <Route path="/contact" element={<Contact />} />
