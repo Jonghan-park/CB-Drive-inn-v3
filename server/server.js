@@ -1,5 +1,7 @@
 const express = require("express");
 const cookieSession = require("cookie-session");
+const session = require("express-session");
+
 const cookieParser = require("cookie-parser");
 const passport = require("passport");
 const app = express();
@@ -26,6 +28,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: false }));
 
+app.use(session({ secret: "SECRET" }));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(
