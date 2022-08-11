@@ -16,7 +16,7 @@ router.get("/login/success", async (req, res) => {
       process.env.JWT_SECRET,
       { expiresIn: "10m" }
     );
-    console.log(req.user);
+
     res.status(200).json({
       success: true,
       meesage: "Success",
