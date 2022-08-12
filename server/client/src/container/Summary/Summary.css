@@ -30,9 +30,11 @@
   box-shadow: 0px 25px 40px #1687d933;
 }
 .eachItem{
+  color: black;
   display: flex;
+  justify-content: flex-start;
 }
 .eachItem img{
-  width: 15%;
+  width: 10%;
   padding: 1rem;
 }
