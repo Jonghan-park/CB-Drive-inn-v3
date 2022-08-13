@@ -14,8 +14,17 @@
   background-color: #d6d6d6;
   border-radius: 20px;
   box-shadow: 0px 25px 40px #1687d933;
+
   /* max-height: 50rem;
   overflow: scroll; */
+ }
+ .cart-items{
+   display: flex;
+  flex-direction: column;
+ }
+ .empty-msg{
+   text-align: center;
+   padding: 1rem;
  }
  .underline {
   width: 9rem;
@@ -41,12 +50,16 @@
  }
  .cart-checkout{
   display: flex;
-  float: right;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-end;
   margin-right: 5%;
-  width: 28%;
+  width: 100%;
   padding: 2rem;
+ }
+ .checkout_box{
+   display: flex;
+   flex-direction: column;
+   align-items: center;
  }
  .subtotal{
   font-size: 22px;
@@ -81,4 +94,20 @@
 .empty-msg{
   color: black;
   
+}
+
+@media screen and (max-width: 1024px){
+  .cart-container{
+    width: 80%;
+  }
+  .cartTitle{
+    font-size: 3rem;
+  }
+  .cart-items{
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+@media screen and (max-width: 600px){
 }

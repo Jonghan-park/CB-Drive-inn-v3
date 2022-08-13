@@ -38,6 +38,7 @@ const Menus = (props) => {
           <div className="underline"></div>
         </div>
         <Categories categories={categories} filterItems={filterItems} />
+
         <Menu items={menuItems} onAddToCart={addItemToCart} />
       </section>
     </main>
