@@ -28,7 +28,7 @@ const Summary = () => {
                   <img src={img} />
 
                   <div className="summary_title">{title}</div>
-                  <div className="summary_amount">{amount}</div>
+                  <div className="summary_amount">{amount} ea</div>
                   <div className="summary_price">${price}</div>
                 </div>
               );

@@ -23,9 +23,10 @@
   font-size: 4rem;
   display: flex;
   justify-content: center;
+  text-align: center;
 }
 .order_summary_container_left{
-  width: 40%;
+  width: 50%;
   height: 85%;
   padding: 1rem;
   background-color: #d6d6d6;
@@ -47,15 +48,28 @@
   color: black;
   font-weight: 600;
   font-size: 18px;
-  display: flex;
-  justify-content: space-around;
   align-items: center;
+  display: flex;
 }
 .eachItem img{
-  width: 130px;
+  width: 140px;
+  padding: 1rem;
+  border-radius: 10%;
+  box-shadow: 2px 2px rgba(0, 0, 0, 0.2);
+}
+.summary_title{
+  width: 250px;
+  overflow-wrap: normal;
+}
+.summary_amount{
+  width: 50px;
   padding: 1rem;
 }
+.summary_price{
+  padding: 0.5rem;
+}
 .subtotal{
+  
   text-align: center;
   margin-left: 20px;
 }
@@ -69,4 +83,47 @@
   float: left;
   margin-left: 30px;
   margin-top: 15px;
+}
+@media screen and (max-width: 1024px){
+ .summary{
+   display: flex;
+   flex-direction: column;
+ }
+ .order_summary_container_left{
+   width: 70%;
+
+ }
+ .eachItem img{
+  width: 180px;
+
+ }
+}
+
+@media screen and (max-width: 600px){
+  .order_summary_container_left{
+    width: 100%;
+ 
+  }
+  .eachItem{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+  }
+  .summaryTitle{
+    font-size: 3rem;
+  }
+  .eachItem img{
+    width: 200px;
+   }
+  .summary_title{
+    width: 250px;
+    overflow-wrap: normal;
+  }
+  .summary_amount{
+    width: 50px;
+    padding: 0rem;
+  }
+  .summary_price{
+    padding: 0rem;
+  }
 }
