@@ -45,16 +45,16 @@ function Navbar() {
               onClick={() => setToggleMenu(false)}
             />
             <ul className="navbar-smallscreen_links">
-              <li className="navbar-item">
+              <li className="navbar-item" onClick={() => setToggleMenu(false)}>
                 <Link to="/">Home</Link>
               </li>
-              <li className="navbar-item">
+              <li className="navbar-item" onClick={() => setToggleMenu(false)}>
                 <Link to="/menu">Menu</Link>
               </li>
-              <li className="navbar-item">
+              <li className="navbar-item" onClick={() => setToggleMenu(false)}>
                 <Link to="/about">About</Link>
               </li>
-              <li className="navbar-item">
+              <li className="navbar-item" onClick={() => setToggleMenu(false)}>
                 <Link to="/contact">Contact</Link>
               </li>
             </ul>
