@@ -4,6 +4,7 @@ import Categories from "./Categories";
 import items from "../../data/data";
 import "./MenuStyle.css";
 import CartContext from "../../store/cart-context";
+import ScrollDownCart from "../ScrollDownCart/ScrollDownCart";
 
 const allCategories = ["all", ...new Set(items.map((item) => item.category))];
 
@@ -40,6 +41,7 @@ const Menus = (props) => {
         <Categories categories={categories} filterItems={filterItems} />
 
         <Menu items={menuItems} onAddToCart={addItemToCart} />
+        <ScrollDownCart />
       </section>
     </main>
   );

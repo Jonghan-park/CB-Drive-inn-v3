@@ -3,7 +3,8 @@
   width: 100%;
   display: flex;
   justify-content: flex-end;
-  align-items: flex-start;
+  text-align: center;
+  padding-bottom: 5px;
 }
 .loginStatus-list{
   display: flex;
@@ -26,12 +27,11 @@
 .loginstatus-link-container{
   display: flex;
   justify-content: flex-end;
+  align-items: center;
   margin-right: 20px;
 }
 .loginstatus-link{
-  text-decoration: none;
-  margin-bottom: 20px;
-  
+  text-decoration: none;  
   font-size: 1.2rem;
   color: white;
   padding: 0 2rem;
@@ -53,8 +53,7 @@
   border: 2px solid white;
   padding: 0.5rem 1rem 0.5rem 1rem;
   border-radius: 15%;
-  margin-bottom: 20px;
-  
+
 }
 .cart-link:hover{
  background:  rgb(239, 139, 45);
