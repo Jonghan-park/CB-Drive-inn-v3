@@ -1,11 +1,14 @@
 import React, { useState, useContext } from "react";
 import CartContext from "../../store/cart-context";
+import { UserContext } from "../../App";
 import CartItem from "./CartItem";
 import "./Cart.css";
 import { Link } from "react-router-dom";
 
 const Cart = () => {
+  const userCtx = useContext(UserContext);
   const cartCtx = useContext(CartContext);
+
   const totalAmount = `${cartCtx.totalAmount.toFixed(2)}`;
 
   const cartItemDecrementHandler = (id) => {
@@ -42,9 +45,15 @@ const Cart = () => {
           <div className="checkout_box">
             <div className="subtotal">Sub-Total</div>
             <div className="total-amount">${totalAmount}</div>
-            <Link to="/cart/summary" className="checkout-button">
-              Checkout
-            </Link>
+            {userCtx.user ? (
+              <Link to="/cart/summary" className="checkout-button">
+                Checkout
+              </Link>
+            ) : (
+              <Link to="/login" className="checkout-button">
+                Login to checkout
+              </Link>
+            )}
           </div>
         </div>
       </div>

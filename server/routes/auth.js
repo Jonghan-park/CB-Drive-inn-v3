@@ -3,7 +3,8 @@ const passport = require("passport");
 const jwt = require("jsonwebtoken");
 const User = require("../models/user");
 
-const CLIENT_URL = "https://cb-drive-inn.herokuapp.com";
+const CLIENT_URL = "http://localhost:3000";
+// const CLIENT_URL = "https://cb-drive-inn.herokuapp.com";
 
 router.get("/login/success", async (req, res) => {
   if (req.user) {
