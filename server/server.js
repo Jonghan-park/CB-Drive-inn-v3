@@ -31,14 +31,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(session({ secret: "SECRET" }));
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(
-  cors({
-    origin: "http://localhost:3000",
-    // origin: "https://cb-drive-inn.herokuapp.com",
-    methods: "GET,POST,PUT,DELETE",
-    credentials: true,
-  })
-);
+app.use(cors());
 
 // Routes
 app.use("/auth", authRoute);
