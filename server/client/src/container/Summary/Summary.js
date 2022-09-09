@@ -40,12 +40,12 @@ const Summary = () => {
             <div className="total-amount">${plusTaxTotalAmount()}</div>
           </div>
         </div>
-        <div className="order_summary_container_right">
+        {/* <div className="order_summary_container_right">
           <form action="">
             <label htmlFor="">dddd</label>
             <input type="text" />
           </form>
-        </div>
+        </div> */}
       </div>
     </div>
   );

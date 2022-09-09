@@ -43,6 +43,7 @@
 .summary_checkout{
   display: flex;
   flex-direction: column;
+  
 }
 .eachItem{
   color: black;
@@ -50,10 +51,11 @@
   font-size: 18px;
   align-items: center;
   display: flex;
+  justify-content: space-evenly;
 }
 .eachItem img{
   width: 140px;
-  padding: 1rem;
+  margin: 0.5rem;
   border-radius: 10%;
   box-shadow: 2px 2px rgba(0, 0, 0, 0.2);
 }
