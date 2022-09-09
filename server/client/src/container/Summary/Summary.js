@@ -1,17 +1,24 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import CartContext from "../../store/cart-context";
 import "./Summary.css";
 
 const Summary = () => {
+  const [taxAmount, setTaxAmount] = useState(0);
+  const [totalPlusTax, setTotalPlusTax] = useState(0);
   const cartCtx = useContext(CartContext);
   const { items, totalAmount } = cartCtx;
 
   const plusTaxTotalAmount = () => {
     const tax = 5;
     const totalTax = totalAmount * (tax / 100);
+    setTaxAmount(totalTax);
     const plusTaxAmount = totalTax + totalAmount;
-    return plusTaxAmount.toFixed(2);
+    setTotalPlusTax(plusTaxAmount.toFixed(2));
   };
+
+  useEffect(() => {
+    plusTaxTotalAmount();
+  }, []);
 
   return (
     <div>
@@ -37,7 +44,8 @@ const Summary = () => {
           <div className="summary_checkout">
             <hr className="summary-line" />
             <div className="subtotal">Sub-Total</div>
-            <div className="total-amount">${plusTaxTotalAmount()}</div>
+            <div className="tax_amount">Tax: ${taxAmount}</div>
+            <div className="total-amount">${totalPlusTax}</div>
           </div>
         </div>
         {/* <div className="order_summary_container_right">

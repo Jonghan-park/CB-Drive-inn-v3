@@ -64,7 +64,7 @@
   overflow-wrap: normal;
 }
 .summary_amount{
-  width: 50px;
+  width: 80px;
   padding: 1rem;
 }
 .summary_price{
@@ -85,6 +85,11 @@
   float: left;
   margin-left: 30px;
   margin-top: 15px;
+}
+.tax_amount{
+  color: black;
+  display: flex;
+  justify-content: center;
 }
 @media screen and (max-width: 1024px){
  .summary{

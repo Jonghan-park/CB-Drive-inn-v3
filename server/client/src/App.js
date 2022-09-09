@@ -45,7 +45,7 @@ function App() {
           console.log(err);
         });
     };
-    const isLoggedIn = async () => {
+    const isLoggedIn = () => {
       const token = localStorage.getItem("authToken");
       if (token) {
         const tokenUser = jwt_decode(token);
