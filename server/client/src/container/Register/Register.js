@@ -29,7 +29,11 @@ function Register() {
       return setError("Passwords do not match");
     }
     try {
-      await axios.post("/user/register", { name, email, password }, config);
+      await axios.post(
+        "http://localhost:5000/user/register",
+        { name, email, password },
+        config
+      );
       alert("Register Successfully");
       navigate("/login");
     } catch (error) {

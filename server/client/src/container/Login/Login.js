@@ -32,7 +32,7 @@ function Login() {
   const loginHandler = async (e) => {
     e.preventDefault();
     try {
-      const { data } = await axios.post("/user/login", {
+      const { data } = await axios.post("http://localhost:5000/user/login", {
         email,
         password,
       });

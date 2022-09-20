@@ -13,7 +13,7 @@ const Summary = () => {
   const plusTaxTotalAmount = () => {
     const tax = 5;
     const totalTax = totalAmount * (tax / 100);
-    setTaxAmount(totalTax);
+    setTaxAmount(totalTax.toFixed(2));
     const plusTaxAmount = totalTax + totalAmount;
     setTotalPlusTax(plusTaxAmount.toFixed(2));
   };
@@ -38,7 +38,10 @@ const Summary = () => {
                     <img src={img} />
 
                     <div className="summary_title">{title}</div>
-                    <div className="summary_amount">{amount} ea</div>
+                    <div className="summary_amount">
+                      <div className="order_amount">{amount}</div>
+                      {amount < 2 ? "order" : "orders"}
+                    </div>
                     <div className="summary_price">${price}</div>
                   </div>
                 );
@@ -47,8 +50,10 @@ const Summary = () => {
             <div className="summary_checkout">
               <hr className="summary-line" />
               <div className="subtotal">Sub-Total</div>
+              <div className="total_amount">Order: ${totalAmount}</div>
               <div className="tax_amount">Tax: ${taxAmount}</div>
-              <div className="total-amount">${totalPlusTax}</div>
+              <div className="total_amount_plus_tax">${totalPlusTax}</div>
+              <button>Proceed to check out</button>
             </div>
           </div>
         </div>
