@@ -1,26 +1,26 @@
 require("dotenv").config();
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
-const DOMAIN = "http://localhost:5000";
+const DOMAIN = "http://localhost:3000";
 
 exports.checkoutStripe = async (req, res) => {
   const { items, totalAmount } = req.body;
-
   const session = await stripe.checkout.sessions.create({
-    line_items: [
-      {
+    line_items: req.body.items.map((item) => {
+      return {
         price_data: {
           currency: "cad",
           product_data: {
-            name: items[0].title,
+            name: item.title,
+            images: [item.img],
           },
-          unit_amount: items[0].price * 100,
+          unit_amount: parseInt(item.price * 100),
         },
-        quantity: items[0].amount,
-      },
-    ],
+        quantity: item.amount,
+      };
+    }),
     mode: "payment",
     success_url: `${DOMAIN}/success`,
-    cancel_url: `${DOMAIN}/canceled`,
+    cancel_url: `${DOMAIN}/cart/summary`,
   });
 
   res.send({ url: session.url });

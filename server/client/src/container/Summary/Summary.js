@@ -35,6 +35,9 @@ const Summary = () => {
       console.log(error);
     }
   };
+  const itemHandler = async () => {
+    console.log(items);
+  };
 
   useEffect(() => {
     plusTaxTotalAmount();
@@ -74,6 +77,7 @@ const Summary = () => {
               <div className="tax_amount">Tax: ${taxAmount}</div>
               <div className="total_amount_plus_tax">${totalPlusTax}</div>
               <button onClick={checkoutHandler}>Proceed to check out</button>
+              <button onClick={itemHandler}>Check item in console</button>
             </div>
           </div>
         </div>
