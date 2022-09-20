@@ -41,6 +41,12 @@ app.use("/user", userRoute);
 app.use("/order", orderRoute);
 app.use("/get", productRoute);
 app.use("/stripe", stripeRoute);
+app.use("/success", async (req, res) => {
+  console.log("Successful payment");
+});
+app.use("/canceled", async (req, res) => {
+  console.log("Cancel payment");
+});
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "/client/build")));

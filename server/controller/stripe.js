@@ -3,19 +3,23 @@ const DOMAIN = "http://localhost:5000";
 
 exports.checkoutStripe = async (req, res) => {
   const { items, totalAmount } = req.body;
-  console.log("In stripe" + items);
   const session = await stripe.checkout.sessions.create({
     line_items: [
       {
-        // Provide the exact Price ID (for example, pr_1234) of the product you want to sell
-        price: "{{PRICE_ID}}",
-        quantity: 1,
+        price_data: {
+          currency: "cad",
+          product_data: {
+            name: items.title,
+          },
+          unit_amount: items.price,
+        },
+        quantity: items.amount,
       },
     ],
     mode: "payment",
-    success_url: `${DOMAIN}?success=true`,
-    cancel_url: `${DOMAIN}?canceled=true`,
+    success_url: `${DOMAIN}/success`,
+    cancel_url: `${DOMAIN}/canceled`,
   });
 
-  res.redirect(303, session.url);
+  res.send({ url: session.url });
 };
