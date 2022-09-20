@@ -9,11 +9,11 @@ exports.checkoutStripe = async (req, res) => {
         price_data: {
           currency: "cad",
           product_data: {
-            name: items.title,
+            name: items[0].title,
           },
-          unit_amount: items.price,
+          unit_amount: items[0].price * 100,
         },
-        quantity: items.amount,
+        quantity: items[0].amount,
       },
     ],
     mode: "payment",

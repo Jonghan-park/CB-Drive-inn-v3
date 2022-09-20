@@ -42,7 +42,7 @@ app.use("/order", orderRoute);
 app.use("/get", productRoute);
 app.use("/stripe", stripeRoute);
 app.use("/success", async (req, res) => {
-  console.log("Successful payment");
+  res.send(console.log("Successful payment"));
 });
 app.use("/canceled", async (req, res) => {
   console.log("Cancel payment");
