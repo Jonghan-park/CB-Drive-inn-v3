@@ -21,10 +21,16 @@ const Summary = () => {
 
   const checkoutHandler = async () => {
     try {
-      await axios.post("http://localhost:5000/stripe/create-checkout-session", {
-        items,
-        totalAmount,
-      });
+      await axios
+        .post("http://localhost:5000/stripe/create-checkout-session", {
+          items,
+          totalAmount,
+        })
+        .then((res) => {
+          if (res.data.url) {
+            window.location.href = res.data.url;
+          }
+        });
     } catch (error) {
       console.log(error);
     }
@@ -62,7 +68,9 @@ const Summary = () => {
             <div className="summary_checkout">
               <hr className="summary-line" />
               <div className="subtotal">Sub-Total</div>
-              <div className="total_amount">Order: ${totalAmount}</div>
+              <div className="total_amount">
+                Order: ${totalAmount.toFixed(2)}
+              </div>
               <div className="tax_amount">Tax: ${taxAmount}</div>
               <div className="total_amount_plus_tax">${totalPlusTax}</div>
               <button onClick={checkoutHandler}>Proceed to check out</button>

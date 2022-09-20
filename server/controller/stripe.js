@@ -1,8 +1,10 @@
+require("dotenv").config();
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 const DOMAIN = "http://localhost:5000";
 
 exports.checkoutStripe = async (req, res) => {
   const { items, totalAmount } = req.body;
+
   const session = await stripe.checkout.sessions.create({
     line_items: [
       {
