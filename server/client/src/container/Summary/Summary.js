@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useContext, useState, useEffect } from "react";
 import { UserContext } from "../../App";
 import CartContext from "../../store/cart-context";
@@ -16,6 +17,17 @@ const Summary = () => {
     setTaxAmount(totalTax.toFixed(2));
     const plusTaxAmount = totalTax + totalAmount;
     setTotalPlusTax(plusTaxAmount.toFixed(2));
+  };
+
+  const checkoutHandler = async () => {
+    try {
+      await axios.post("http://localhost:5000/stripe/create-checkout-session", {
+        items,
+        totalAmount,
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   useEffect(() => {
@@ -53,7 +65,7 @@ const Summary = () => {
               <div className="total_amount">Order: ${totalAmount}</div>
               <div className="tax_amount">Tax: ${taxAmount}</div>
               <div className="total_amount_plus_tax">${totalPlusTax}</div>
-              <button>Proceed to check out</button>
+              <button onClick={checkoutHandler}>Proceed to check out</button>
             </div>
           </div>
         </div>

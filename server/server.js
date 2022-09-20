@@ -19,6 +19,7 @@ const mailRoute = require("./routes/mail");
 const userRoute = require("./routes/user");
 const orderRoute = require("./routes/order");
 const productRoute = require("./routes/product");
+const stripeRoute = require("./routes/stripe");
 
 // Database connection
 connection();
@@ -39,6 +40,7 @@ app.use("/contact", mailRoute);
 app.use("/user", userRoute);
 app.use("/order", orderRoute);
 app.use("/get", productRoute);
+app.use("/stripe", stripeRoute);
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "/client/build")));
