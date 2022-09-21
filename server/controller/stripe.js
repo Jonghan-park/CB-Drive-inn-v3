@@ -29,5 +29,5 @@ exports.checkoutStripe = async (req, res) => {
     cancel_url: `${DOMAIN}/cart/summary`,
   });
 
-  res.send({ url: session.url });
+  res.send({ url: session.url, items: items });
 };

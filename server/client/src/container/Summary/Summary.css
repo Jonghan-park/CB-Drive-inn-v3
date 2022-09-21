@@ -100,6 +100,24 @@ align-items: center;
   display: flex;
   justify-content: center;
 }
+
+.checkout-button{
+  color: rgb(239, 139, 45);
+  background: #191919;
+  text-align: center;
+  width: 100%;
+  padding: 0.5rem;
+  border: 2px 2px white;
+  border-color: white;
+  border-radius: 3rem;
+  font-size: 25px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.checkout-button:hover{
+  background: rgb(239, 139, 45);
+  color: white;
+}
 @media screen and (max-width: 1024px){
  .summary{
    display: flex;

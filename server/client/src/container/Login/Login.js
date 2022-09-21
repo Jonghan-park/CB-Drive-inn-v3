@@ -36,7 +36,6 @@ function Login() {
         email,
         password,
       });
-      console.log(data);
       localStorage.setItem("authToken", data.token);
       alert("Login Successful");
       window.open("http://localhost:3000", "_self");
