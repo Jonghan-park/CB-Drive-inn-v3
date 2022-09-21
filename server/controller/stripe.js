@@ -9,15 +9,21 @@ exports.checkoutStripe = async (req, res) => {
       return {
         price_data: {
           currency: "cad",
+          // tax_behavior: "exclusive",
           product_data: {
             name: item.title,
-            images: [item.img],
+            // images: [item.img],
+            // tax_code: "txcd_20030000",
           },
           unit_amount: parseInt(item.price * 100),
         },
         quantity: item.amount,
+        // tax_rates: ["txr_1LkFckGOncvPLaJPM6W7b27R"],
       };
     }),
+    // automatic_tax: {
+    //   enabled: true,
+    // },
     mode: "payment",
     success_url: `${DOMAIN}/success`,
     cancel_url: `${DOMAIN}/cart/summary`,

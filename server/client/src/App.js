@@ -16,6 +16,7 @@ import LoginStatus from "./container/LoginStatus/LoginStatus";
 import Mypage from "./container/MyPage/MyPage";
 import CartProvider from "./store/CartProvider";
 import Summary from "./container/Summary/Summary";
+import Success from "./container/Success/Success";
 
 export const UserContext = createContext();
 
@@ -78,6 +79,7 @@ function App() {
               <Route path="/menu" element={<Menu />} />
               <Route path="/about" element={<About />} />
               <Route path="/contact" element={<Contact />} />
+              <Route path="/success" element={<Success />} />
             </Routes>
           </UserContext.Provider>
           <Footer />
