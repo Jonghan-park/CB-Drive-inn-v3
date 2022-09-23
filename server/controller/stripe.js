@@ -1,11 +1,9 @@
-const { addOrder } = require("./paymentController");
-
 require("dotenv").config();
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 const DOMAIN = "http://localhost:3000";
 
 exports.checkoutStripe = async (req, res) => {
-  const { items, totalAmount } = req.body;
+  const { items, totalAmount, user } = req.body;
   const session = await stripe.checkout.sessions.create({
     line_items: req.body.items.map((item) => {
       return {
@@ -31,9 +29,10 @@ exports.checkoutStripe = async (req, res) => {
     cancel_url: `${DOMAIN}/cart/summary`,
   });
 
-  if (session.url.contains("success")) {
-    OrderRouter.post("/success", addOrder);
-    res.send({ url: session.url });
+  if (session.url === "http://localhost:3000/success") {
+    const addOrderToUser = async (req, res) => {};
+    addOrderToUser();
+    res.send({ url: session.url, message: "Stripe -> Success" });
   } else {
     res.send({ url: session.url });
   }

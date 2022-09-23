@@ -10,6 +10,7 @@ const Summary = () => {
   const userCtx = useContext(UserContext);
   const cartCtx = useContext(CartContext);
   const { items, totalAmount } = cartCtx;
+  const { user } = userCtx;
 
   const plusTaxTotalAmount = () => {
     const tax = 5;
@@ -25,6 +26,7 @@ const Summary = () => {
         .post("http://localhost:5000/stripe/create-checkout-session", {
           items,
           totalAmount,
+          user,
         })
         .then((res) => {
           if (res.data.url) {
@@ -44,7 +46,7 @@ const Summary = () => {
     <div>
       <h3 className="summaryTitle">Order Summary</h3>
       <div className="underline" />
-      {userCtx.user ? (
+      {user ? (
         <div className="summary">
           <div className="order_summary_container_left">
             {items.length === 0 && <h2>No items</h2>}
