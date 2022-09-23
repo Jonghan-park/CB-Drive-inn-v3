@@ -1,3 +1,5 @@
+const { addOrder } = require("./paymentController");
+
 require("dotenv").config();
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 const DOMAIN = "http://localhost:3000";
@@ -29,5 +31,10 @@ exports.checkoutStripe = async (req, res) => {
     cancel_url: `${DOMAIN}/cart/summary`,
   });
 
-  res.send({ url: session.url, items: items });
+  if (session.url.contains("success")) {
+    OrderRouter.post("/success", addOrder);
+    res.send({ url: session.url });
+  } else {
+    res.send({ url: session.url });
+  }
 };
