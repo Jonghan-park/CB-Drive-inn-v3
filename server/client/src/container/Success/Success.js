@@ -5,7 +5,10 @@ const Success = () => {
   console.log();
   return (
     <div className="success_container">
-      <h1>Success</h1>
+      <i class="checkmark">✓</i>
+      <h2>Payment successful !</h2>
+      <p>We are delighted to inform you that we received your payments</p>
+      <button className="view_orders">View Orders</button>
     </div>
   );
 };
