@@ -32,7 +32,7 @@ exports.checkoutStripe = async (req, res) => {
   if (session.url === "http://localhost:3000/success") {
     const addOrderToUser = async (req, res) => {};
     addOrderToUser();
-    res.send({ url: session.url, message: "Stripe -> Success" });
+    res.send({ url: session.url, items: items });
   } else {
     res.send({ url: session.url });
   }
