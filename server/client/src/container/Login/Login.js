@@ -20,8 +20,12 @@ function Login() {
   }, []);
 
   const google = () => {
-    window.open("http://localhost:5000/auth/google", "_self");
-    // window.open("https://cb-drive-inn.herokuapp.com/auth/github", "_self");
+    try {
+      window.open("http://localhost:5000/auth/google", "_self");
+      // window.open("https://cb-drive-inn.herokuapp.com/auth/github", "_self");
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const github = () => {
