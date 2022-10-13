@@ -1,7 +1,7 @@
 # CB drive inn - Pick-up order system with payment method project
 
 # Period
-02 May, 2022 ~ current
+02 May, 2022 ~ 10 Oct, 2022
 
 # Purpose
 My client needs a pick-up order system that customer can order food online and pick it up. 
