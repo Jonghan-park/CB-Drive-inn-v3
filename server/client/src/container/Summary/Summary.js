@@ -14,9 +14,9 @@ const Summary = () => {
 
   const plusTaxTotalAmount = () => {
     const tax = 5;
-    const totalTax = totalAmount * (tax / 100);
+    const totalTax = Number(totalAmount) * (tax / 100);
     setTaxAmount(totalTax.toFixed(2));
-    const plusTaxAmount = totalTax + totalAmount;
+    const plusTaxAmount = Number(taxAmount) + Number(totalAmount);
     setTotalPlusTax(plusTaxAmount.toFixed(2));
   };
 
@@ -40,7 +40,7 @@ const Summary = () => {
 
   useEffect(() => {
     plusTaxTotalAmount();
-  }, []);
+  }, [items.length]);
 
   return (
     <div>
