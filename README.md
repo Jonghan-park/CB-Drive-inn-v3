@@ -18,5 +18,6 @@ IDE : Visual Studio Code
 ![Screen Shot 2022-08-11 at 11 15 18 PM](https://user-images.githubusercontent.com/90344204/184289242-26e38b85-6a61-487d-a0ff-c2d5cc8e99a0.png)
 ![Screen Shot 2022-08-11 at 11 29 59 PM](https://user-images.githubusercontent.com/90344204/184290671-9c2fe989-ccfd-4b6e-9a70-6f63ca084e0a.png)
 <img width="1140" alt="Screen Shot 2022-10-12 at 6 58 19 PM" src="https://user-images.githubusercontent.com/90344204/195474756-a67f393a-e495-4d77-9f7b-2fe4de853efd.png">
+<img width="1140" alt="Screen Shot 2022-10-12 at 7 01 49 PM" src="https://user-images.githubusercontent.com/90344204/195475082-c31a7a29-7cd1-4fce-9ace-ef4049423fac.png">
 
 <img width="1140" alt="Screen Shot 2022-10-12 at 6 59 23 PM" src="https://user-images.githubusercontent.com/90344204/195474861-3b8e6fb4-4cc5-4ae3-8458-d823c8d3ea66.png">
