@@ -13,18 +13,12 @@ module.exports = async (name, email, message) => {
       pass: process.env.REACT_APP_GMAIL_PASSWORD,
     },
   });
-  transporter.use(
-    "compile",
-    hbs({
-      viewEngine: "express-handlebars",
-      viewPath: "../client/public/emailTemplate/",
-    })
-  );
+
   const mailOption = {
     from: name,
     to: process.env.REACT_APP_GMAIL_ADDRESS,
     subject: "The message from CB Drive inn web application",
-    template: "index",
+    template: "../client/public/emailTemplate/index.html",
     content: {
       email: email,
       name: name,
@@ -34,8 +28,8 @@ module.exports = async (name, email, message) => {
 
   try {
     await transporter.sendMail(mailOption);
-    return "success";
+    return console.log("Message Sent !");
   } catch (error) {
-    return error;
+    return console.log(error);
   }
 };

@@ -16,7 +16,6 @@ router.post("/mail", async (req, res) => {
     } else {
       res.json({
         status: "Fail",
-        code: response.code,
       });
     }
   });
