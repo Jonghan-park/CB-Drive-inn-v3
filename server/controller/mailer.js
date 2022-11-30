@@ -21,12 +21,19 @@ module.exports = async (name, email, message) => {
     from: name,
     to: process.env.REACT_APP_GMAIL_ADDRESS,
     subject: "The message from CB Drive inn web application",
-    template: "../client/public/emailTemplate/index.html",
     templateVars: {
       name: name,
       email: email,
       message: message,
+      logo: "/client/public/emailTemplate/images/image-4.png",
     },
+    // attachments: [
+    //   {
+    //     filename: "image-4.png",
+    //     path: "client/public/emailTemplate/images",
+    //     cid: "logo",
+    //   },
+    // ],
   };
 
   const templatePath = "client/public/emailTemplate/index.html";

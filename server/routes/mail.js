@@ -6,18 +6,17 @@ router.post("/mail", async (req, res) => {
   const useremail = req.body.userEmail;
   const usermessage = req.body.userMessage;
 
-  mailer(username, useremail, usermessage).then((response) => {
-    if (response === "success") {
+  mailer(username, useremail, usermessage)
+    .then(() => {
       res.status(200).json({
-        status: "Success",
-        code: 200,
+        ok: "Success",
         message: "Message Sent Successfully!",
       });
-    } else {
+    })
+    .catch((error) => {
       res.json({
-        status: "Fail",
+        message: "Something went wrong!",
       });
-    }
-  });
+    });
 });
 module.exports = router;

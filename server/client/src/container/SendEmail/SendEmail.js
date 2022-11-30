@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from "axios";
 import { toast } from "react-toastify";
 import "./SendEmail.css";
 
@@ -17,23 +18,16 @@ export default function SendEmail() {
     e.preventDefault();
     const { userName, userEmail, userMessage } = values;
 
-    await fetch("/contact/mail", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
+    try {
+      const response = await axios.post("/contact/mail", {
         userName,
         userEmail,
         userMessage,
-      }),
-    })
-      .then((res) => {
-        toast.success("Thank you for sending a message!");
-      })
-      .catch((error) => {
-        toast.error("Something went wrong");
       });
+      toast.success(response.data.message);
+    } catch (error) {
+      toast.error("Something went wrong!");
+    }
   };
 
   return (

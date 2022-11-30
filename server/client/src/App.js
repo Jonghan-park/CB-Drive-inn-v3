@@ -55,7 +55,12 @@ function App() {
     <div className="backgroundColor">
       <Router>
         <CartProvider>
-          <ToastContainer position="top-right" autoClose={5000} draggable />
+          <ToastContainer
+            position="top-right"
+            autoClose={5000}
+            draggable
+            theme="dark"
+          />
           <Navbar />
           <UserContext.Provider value={{ user, setUser }}>
             <LoginStatus />
