@@ -40,7 +40,6 @@ module.exports = async (name, email, message) => {
 
   try {
     transporter.sendMail(mailOption);
-    console.log("Message Sent !");
   } catch (error) {
     return console.log(error);
   }

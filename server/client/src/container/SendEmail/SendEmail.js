@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { toast } from "react-toastify";
 import "./SendEmail.css";
 
 export default function SendEmail() {
@@ -14,10 +15,9 @@ export default function SendEmail() {
 
   const sendEmail = async (e) => {
     e.preventDefault();
-
     const { userName, userEmail, userMessage } = values;
 
-    const res = await fetch("/contact/mail", {
+    await fetch("/contact/mail", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -29,7 +29,7 @@ export default function SendEmail() {
       }),
     })
       .then((res) => {
-        window.alert("Thank you for sending a message!");
+        toast("Thank you for sending a message!");
       })
       .catch((error) => {
         window.alert("Something went wrong");

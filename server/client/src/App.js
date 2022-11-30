@@ -18,6 +18,7 @@ import Mypage from "./container/MyPage/MyPage";
 import CartProvider from "./store/CartProvider";
 import Summary from "./container/Summary/Summary";
 import Success from "./container/Success/Success";
+import { ToastContainer } from "react-bootstrap";
 
 export const UserContext = createContext();
 
@@ -54,6 +55,7 @@ function App() {
       <Router>
         <CartProvider>
           <Navbar />
+          <ToastContainer />
           <UserContext.Provider value={{ user, setUser }}>
             <LoginStatus />
             <Routes>
