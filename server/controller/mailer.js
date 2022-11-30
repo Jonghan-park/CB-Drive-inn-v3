@@ -1,9 +1,12 @@
 const nodeMailer = require("nodemailer");
-const hbs = require("nodemailer-express-handlebars");
+const fs = require("fs");
+const ejs = require("ejs");
+const { htmlToText } = require("html-to-text");
+const juice = require("juice");
 require("dotenv").config();
 
 module.exports = async (name, email, message) => {
-  const transporter = await nodeMailer.createTransport({
+  const transporter = nodeMailer.createTransport({
     service: "gmail",
     host: "smtp.gmail.com", // gmail server
     port: 587,
@@ -19,16 +22,25 @@ module.exports = async (name, email, message) => {
     to: process.env.REACT_APP_GMAIL_ADDRESS,
     subject: "The message from CB Drive inn web application",
     template: "../client/public/emailTemplate/index.html",
-    content: {
-      email: email,
+    templateVars: {
       name: name,
+      email: email,
       message: message,
     },
   };
 
+  const templatePath = "client/public/emailTemplate/index.html";
+  const template = fs.readFileSync(templatePath, "utf-8");
+  const html = ejs.render(template, mailOption.templateVars);
+  const text = htmlToText(html);
+  const htmlWithStylesInlined = juice(html);
+
+  mailOption.html = htmlWithStylesInlined;
+  mailOption.text = text;
+
   try {
-    await transporter.sendMail(mailOption);
-    return console.log("Message Sent !");
+    transporter.sendMail(mailOption);
+    console.log("Message Sent !");
   } catch (error) {
     return console.log(error);
   }

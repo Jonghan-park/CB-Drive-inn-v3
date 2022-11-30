@@ -16,24 +16,24 @@ export default function SendEmail() {
     e.preventDefault();
 
     const { userName, userEmail, userMessage } = values;
-    try {
-      const res = await fetch("/contact/mail", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          userName,
-          userEmail,
-          userMessage,
-        }),
-      });
-      if (res.status === 400 || !res) {
+
+    const res = await fetch("/contact/mail", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        userName,
+        userEmail,
+        userMessage,
+      }),
+    })
+      .then((res) => {
+        window.alert("Thank you for sending a message!");
+      })
+      .catch((error) => {
         window.alert("Something went wrong");
-      }
-    } catch (error) {
-      console.log(error);
-    }
+      });
   };
 
   return (
