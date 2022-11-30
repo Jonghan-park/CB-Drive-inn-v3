@@ -1,5 +1,7 @@
 import { createContext } from "react";
 import { useState, useEffect } from "react";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
@@ -18,7 +20,6 @@ import Mypage from "./container/MyPage/MyPage";
 import CartProvider from "./store/CartProvider";
 import Summary from "./container/Summary/Summary";
 import Success from "./container/Success/Success";
-import { ToastContainer } from "react-bootstrap";
 
 export const UserContext = createContext();
 
@@ -54,8 +55,8 @@ function App() {
     <div className="backgroundColor">
       <Router>
         <CartProvider>
+          <ToastContainer position="top-right" autoClose={5000} draggable />
           <Navbar />
-          <ToastContainer />
           <UserContext.Provider value={{ user, setUser }}>
             <LoginStatus />
             <Routes>

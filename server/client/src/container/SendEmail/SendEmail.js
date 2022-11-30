@@ -29,10 +29,10 @@ export default function SendEmail() {
       }),
     })
       .then((res) => {
-        toast("Thank you for sending a message!");
+        toast.success("Thank you for sending a message!");
       })
       .catch((error) => {
-        window.alert("Something went wrong");
+        toast.error("Something went wrong");
       });
   };
 
