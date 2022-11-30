@@ -15,7 +15,7 @@ router.post("/mail", async (req, res) => {
     })
     .catch((error) => {
       res.json({
-        message: "Something went wrong!",
+        message: "error",
       });
     });
 });

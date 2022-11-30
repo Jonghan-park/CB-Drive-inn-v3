@@ -25,7 +25,6 @@ module.exports = async (name, email, message) => {
       name: name,
       email: email,
       message: message,
-      logo: "/client/public/emailTemplate/images/image-4.png",
     },
     // attachments: [
     //   {
