@@ -1,9 +1,12 @@
 import React, { useContext } from "react";
 import { FaCartPlus } from "react-icons/fa";
+import { useDispatch } from "react-redux";
+import { addItem } from "../../features/cart/cartSlice";
 import CartContext from "../../store/cart-context";
 import "./Menu.css";
 
 const Menu = ({ items, onAddToCart }) => {
+  const dispatch = useDispatch();
   const cartCtx = useContext(CartContext);
 
   const findItemById = (id) => {
@@ -32,7 +35,8 @@ const Menu = ({ items, onAddToCart }) => {
               <p className="item-text">{desc}</p>
               <div className="cart-icon-container">
                 <button
-                  onClick={() => addToCart(id, title, price, img)}
+                  // onClick={() => addToCart(id, title, price, img)}
+                  onClick={() => dispatch(addItem({ id, title, price, img }))}
                   className="cartBtn"
                 >
                   <FaCartPlus className="cart-icon" />
