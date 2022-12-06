@@ -26,13 +26,6 @@ module.exports = async (name, email, message) => {
       email: email,
       message: message,
     },
-    // attachments: [
-    //   {
-    //     filename: "image-4.png",
-    //     path: "client/public/emailTemplate/images",
-    //     cid: "logo",
-    //   },
-    // ],
   };
 
   const templatePath = "client/public/emailTemplate/index.html";

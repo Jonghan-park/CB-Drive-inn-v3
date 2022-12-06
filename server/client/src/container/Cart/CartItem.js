@@ -31,7 +31,7 @@ const CartItem = (props) => {
           <div className="cart-count">{props.item.amount}</div>
           <button
             className="cart-btn"
-            disabled={props.item.amount === 10}
+            disabled={props.item.amount > 9}
             onClick={() => dispatch(incrementItem(props.item))}
           >
             +

@@ -2,13 +2,13 @@ import React, { useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import "./Register.css";
+import { toast } from "react-toastify";
 
 function Register() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmpassword, setConfirmPassword] = useState("");
-  const [error, setError] = useState("");
 
   const navigate = useNavigate();
 
@@ -23,10 +23,8 @@ function Register() {
     if (password !== confirmpassword) {
       setPassword("");
       setConfirmPassword("");
-      setTimeout(() => {
-        setError("");
-      }, 5000);
-      return setError("Passwords do not match");
+
+      return toast.error("Passwords do not match");
     }
     try {
       await axios.post(
@@ -34,13 +32,10 @@ function Register() {
         { name, email, password },
         config
       );
-      alert("Register Successfully");
+      toast.success("Register Successfully");
       navigate("/login");
     } catch (error) {
-      setError(error.response.data.error);
-      setTimeout(() => {
-        setError("");
-      }, 3000);
+      toast.error(error.response.data.error);
     }
   };
 
@@ -49,8 +44,6 @@ function Register() {
       <h3 className="registerTitle">Register</h3>
       <div className="underline" />
       <form onSubmit={registerHandler} className="register-form">
-        {error && <span className="error-message">{error}</span>}
-
         <label htmlFor="name">Name:</label>
         <input
           type="text"

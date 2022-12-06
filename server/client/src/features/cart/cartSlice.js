@@ -33,14 +33,15 @@ const cartSlice = createSlice({
 
       state.cartItems = updatedItems;
       state.totalAmount = updateTotalAmount;
+      localStorage.setItem("cartItems", JSON.stringify(state));
     },
     decrementItem: (state, action) => {
       const existingItemIndex = state.cartItems.findIndex(
         (item) => item.id === action.payload.id
       );
-
       state.cartItems[existingItemIndex].amount -= 1;
       state.totalAmount -= action.payload.price;
+      localStorage.setItem("cartItems", JSON.stringify(state));
     },
     incrementItem: (state, action) => {
       const existingItemIndex = state.cartItems.findIndex(
@@ -48,6 +49,7 @@ const cartSlice = createSlice({
       );
       state.cartItems[existingItemIndex].amount += 1;
       state.totalAmount += action.payload.price;
+      localStorage.setItem("cartItems", JSON.stringify(state));
     },
     removeItem: (state, action) => {
       const updatedItems = state.cartItems.filter(
@@ -57,11 +59,21 @@ const cartSlice = createSlice({
         state.totalAmount - action.payload.price * action.payload.amount;
       state.cartItems = updatedItems;
       state.totalAmount = updateTotalAmount;
+      localStorage.setItem("cartItems", JSON.stringify(state));
+    },
+    setCart: (state, action) => {
+      let cartFromLocal = [];
+      cartFromLocal = action.payload.cartItems;
+      const totalAmountFromLocal = action.payload.totalAmount;
+      if (state.cartItems.length === 0) {
+        state.cartItems = cartFromLocal;
+        state.totalAmount = totalAmountFromLocal;
+      }
     },
   },
 });
 
-export const { addItem, decrementItem, incrementItem, removeItem } =
+export const { addItem, decrementItem, incrementItem, removeItem, setCart } =
   cartSlice.actions;
 
 export default cartSlice.reducer;
