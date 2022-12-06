@@ -10,10 +10,6 @@ import "./CartItem.css";
 const CartItem = (props) => {
   const dispatch = useDispatch();
 
-  // const removeItemHandler = (item) => {
-  //   cartCtx.removeItem(item);
-  // };
-
   const price = `$${props.item.price.toFixed(2)}`;
   return (
     <div className="each_cart_items">
@@ -46,7 +42,7 @@ const CartItem = (props) => {
           <div>
             <button
               className="cart-remove"
-              onClick={() => dispatch(removeItem(props.item.id))}
+              onClick={() => dispatch(removeItem(props.item))}
               variant="light"
             >
               Remove

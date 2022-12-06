@@ -16,7 +16,7 @@ const cartSlice = createSlice({
       );
 
       const existingItem = state.cartItems[existingItemIndex];
-      console.log(existingItem);
+
       let updatedItems = [];
       if (existingItem) {
         const updatedItem = {
@@ -49,7 +49,15 @@ const cartSlice = createSlice({
       state.cartItems[existingItemIndex].amount += 1;
       state.totalAmount += action.payload.price;
     },
-    removeItem: (state, action) => {},
+    removeItem: (state, action) => {
+      const updatedItems = state.cartItems.filter(
+        (item) => item.id !== action.payload.id
+      );
+      const updateTotalAmount =
+        state.totalAmount - action.payload.price * action.payload.amount;
+      state.cartItems = updatedItems;
+      state.totalAmount = updateTotalAmount;
+    },
   },
 });
 
