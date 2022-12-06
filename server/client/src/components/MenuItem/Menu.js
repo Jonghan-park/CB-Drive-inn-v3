@@ -2,24 +2,11 @@ import React, { useContext } from "react";
 import { FaCartPlus } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 import { addItem } from "../../features/cart/cartSlice";
-import CartContext from "../../store/cart-context";
 import "./Menu.css";
 
-const Menu = ({ items, onAddToCart }) => {
+const Menu = ({ items }) => {
   const dispatch = useDispatch();
-  const cartCtx = useContext(CartContext);
 
-  const findItemById = (id) => {
-    const { item } = items.findIndex((x) => x.id === id);
-    console.log(item);
-    return item;
-  };
-
-  const addToCart = (id, title, price, img) => {
-    // const foundItem = findItemById(id);
-
-    onAddToCart(id, title, price, img);
-  };
   return (
     <div className="section-center">
       {items.map((menuItem) => {
@@ -35,7 +22,6 @@ const Menu = ({ items, onAddToCart }) => {
               <p className="item-text">{desc}</p>
               <div className="cart-icon-container">
                 <button
-                  // onClick={() => addToCart(id, title, price, img)}
                   onClick={() =>
                     dispatch(addItem({ id, title, amount: 1, price, img }))
                   }

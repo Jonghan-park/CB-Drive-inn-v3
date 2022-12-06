@@ -1,15 +1,13 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import Menu from "./Menu";
 import Categories from "./Categories";
 import items from "../../data/data";
 import "./MenuStyle.css";
-import CartContext from "../../store/cart-context";
 import ScrollDownCart from "../ScrollDownCart/ScrollDownCart";
 
 const allCategories = ["all", ...new Set(items.map((item) => item.category))];
 
 const Menus = (props) => {
-  const cartCtx = useContext(CartContext);
   const [menuItems, setMenuItems] = useState(items);
   const [categories, setCategories] = useState(allCategories);
 
@@ -21,15 +19,6 @@ const Menus = (props) => {
     const newItems = items.filter((item) => item.category === category);
     setMenuItems(newItems);
   };
-  const addItemToCart = (id, title, price, img) => {
-    cartCtx.addItem({
-      id,
-      title: title,
-      amount: 1,
-      price: price,
-      img,
-    });
-  };
 
   return (
     <main>
@@ -40,7 +29,7 @@ const Menus = (props) => {
         </div>
         <Categories categories={categories} filterItems={filterItems} />
 
-        <Menu items={menuItems} onAddToCart={addItemToCart} />
+        <Menu items={menuItems} />
         <ScrollDownCart />
       </section>
     </main>
