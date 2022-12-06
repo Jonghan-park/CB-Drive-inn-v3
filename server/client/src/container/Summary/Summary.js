@@ -40,7 +40,7 @@ const Summary = () => {
 
   useEffect(() => {
     plusTaxTotalAmount();
-  }, [items.length]);
+  }, [totalAmount]);
 
   return (
     <div>
@@ -55,7 +55,7 @@ const Summary = () => {
                 const { id, title, amount, price, img } = item;
                 return (
                   <div className="eachItem" key={id}>
-                    <img src={img} />
+                    <img src={img} alt={title} />
 
                     <div className="summary_title">{title}</div>
                     <div className="summary_amount">
