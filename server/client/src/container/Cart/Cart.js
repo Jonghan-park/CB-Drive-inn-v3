@@ -1,23 +1,15 @@
-import React, { useState, useContext } from "react";
-import CartContext from "../../store/cart-context";
+import React, { useContext } from "react";
+
 import { UserContext } from "../../App";
 import CartItem from "./CartItem";
 import "./Cart.css";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Cart = () => {
   const userCtx = useContext(UserContext);
-  const cartCtx = useContext(CartContext);
-
-  const totalAmount = `${cartCtx.totalAmount.toFixed(2)}`;
-
-  const cartItemDecrementHandler = (id) => {
-    cartCtx.decrementItem(id);
-  };
-
-  const cartItemIncrementHandler = (item) => {
-    cartCtx.addItem({ ...item, amount: 1 });
-  };
+  const { cartItems, totalAmount } = useSelector((state) => state.cart);
+  const totalAmountInCart = `${totalAmount.toFixed(2)}`;
 
   return (
     <div className="cart">
@@ -25,26 +17,19 @@ const Cart = () => {
       <div className="underline" />
       <div className="cart-container">
         <div className="cart-items">
-          {cartCtx.items.length === 0 ? (
+          {cartItems.length === 0 ? (
             <h3 className="empty-msg">
               Your cart is empty. <Link to="/menu">Go to menu</Link>
             </h3>
           ) : (
-            cartCtx.items.map((item) => (
-              <CartItem
-                key={item.id}
-                item={item}
-                onRemove={cartItemDecrementHandler.bind(null, item.id)}
-                onAdd={cartItemIncrementHandler.bind(null, item)}
-              />
-            ))
+            cartItems.map((item) => <CartItem key={item.id} item={item} />)
           )}
         </div>
         <hr className="cart-line" />
         <div className="cart-checkout">
           <div className="checkout_box">
             <div className="subtotal">Sub-Total</div>
-            <div className="total-amount">${totalAmount}</div>
+            <div className="total-amount">${totalAmountInCart}</div>
             {userCtx.user ? (
               <Link to="/cart/summary" className="checkout-button">
                 Checkout

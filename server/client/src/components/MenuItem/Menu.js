@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import { FaCartPlus } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 import { addItem } from "../../features/cart/cartSlice";

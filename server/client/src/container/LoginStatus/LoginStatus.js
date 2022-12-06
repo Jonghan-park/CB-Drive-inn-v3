@@ -1,19 +1,12 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import jwt_decode from "jwt-decode";
-import { Badge } from "react-bootstrap";
 
 import { Link } from "react-router-dom";
 import "./LoginStatus.css";
-import CartContext from "../../store/cart-context";
 import { useSelector } from "react-redux";
 
 function LoginStatus() {
   const [user, setUser] = useState(null);
-  const cartCtx = useContext(CartContext);
-  // const { items } = cartCtx;
-  // const numberOfCartItems = items.reduce((curNumber, item) => {
-  //   return curNumber + item.amount;
-  // }, 0);
   const { cartItems } = useSelector((state) => state.cart);
 
   const logout = () => {

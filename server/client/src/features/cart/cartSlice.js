@@ -34,9 +34,26 @@ const cartSlice = createSlice({
       state.cartItems = updatedItems;
       state.totalAmount = updateTotalAmount;
     },
+    decrementItem: (state, action) => {
+      const existingItemIndex = state.cartItems.findIndex(
+        (item) => item.id === action.payload.id
+      );
+
+      state.cartItems[existingItemIndex].amount -= 1;
+      state.totalAmount -= action.payload.price;
+    },
+    incrementItem: (state, action) => {
+      const existingItemIndex = state.cartItems.findIndex(
+        (item) => item.id === action.payload.id
+      );
+      state.cartItems[existingItemIndex].amount += 1;
+      state.totalAmount += action.payload.price;
+    },
+    removeItem: (state, action) => {},
   },
 });
 
-export const { addItem } = cartSlice.actions;
+export const { addItem, decrementItem, incrementItem, removeItem } =
+  cartSlice.actions;
 
 export default cartSlice.reducer;

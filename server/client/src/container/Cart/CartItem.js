@@ -1,13 +1,18 @@
-import React, { useContext } from "react";
-import CartContext from "../../store/cart-context";
+import React from "react";
+import { useDispatch } from "react-redux";
+import {
+  decrementItem,
+  incrementItem,
+  removeItem,
+} from "../../features/cart/cartSlice";
 import "./CartItem.css";
 
 const CartItem = (props) => {
-  const cartCtx = useContext(CartContext);
+  const dispatch = useDispatch();
 
-  const removeItemHandler = (item) => {
-    cartCtx.removeItem(item);
-  };
+  // const removeItemHandler = (item) => {
+  //   cartCtx.removeItem(item);
+  // };
 
   const price = `$${props.item.price.toFixed(2)}`;
   return (
@@ -23,12 +28,16 @@ const CartItem = (props) => {
           <button
             className="cart-btn"
             disabled={props.item.amount === 1}
-            onClick={props.onRemove}
+            onClick={() => dispatch(decrementItem(props.item))}
           >
             -
           </button>
           <div className="cart-count">{props.item.amount}</div>
-          <button className="cart-btn" onClick={props.onAdd}>
+          <button
+            className="cart-btn"
+            disabled={props.item.amount === 10}
+            onClick={() => dispatch(incrementItem(props.item))}
+          >
             +
           </button>
         </div>
@@ -37,7 +46,7 @@ const CartItem = (props) => {
           <div>
             <button
               className="cart-remove"
-              onClick={() => removeItemHandler(props.item)}
+              onClick={() => dispatch(removeItem(props.item.id))}
               variant="light"
             >
               Remove
