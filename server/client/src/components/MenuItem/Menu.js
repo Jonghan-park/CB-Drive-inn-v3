@@ -36,7 +36,9 @@ const Menu = ({ items, onAddToCart }) => {
               <div className="cart-icon-container">
                 <button
                   // onClick={() => addToCart(id, title, price, img)}
-                  onClick={() => dispatch(addItem({ id, title, price, img }))}
+                  onClick={() =>
+                    dispatch(addItem({ id, title, amount: 1, price, img }))
+                  }
                   className="cartBtn"
                 >
                   <FaCartPlus className="cart-icon" />
