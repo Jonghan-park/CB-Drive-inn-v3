@@ -1,8 +1,7 @@
-import axios from "axios";
 import React, { useContext, useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { UserContext } from "../../App";
-import CartContext from "../../store/cart-context";
+import axios from "axios";
 import "./Summary.css";
 
 const Summary = () => {
@@ -29,8 +28,8 @@ const Summary = () => {
           user,
         })
         .then((res) => {
-          if (res.data.url) {
-            window.location.href = res.data.url;
+          if (res.data.session.url) {
+            window.location.href = res.data.session.url;
           }
         });
     } catch (error) {

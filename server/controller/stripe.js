@@ -3,9 +3,8 @@ const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 const DOMAIN = "http://localhost:3000";
 
 exports.checkoutStripe = async (req, res) => {
-  const { items, totalAmount, user } = req.body;
   const session = await stripe.checkout.sessions.create({
-    line_items: req.body.items.map((item) => {
+    line_items: req.body.cartItems.map((item) => {
       return {
         price_data: {
           currency: "cad",
@@ -28,12 +27,12 @@ exports.checkoutStripe = async (req, res) => {
     success_url: `${DOMAIN}/success`,
     cancel_url: `${DOMAIN}/cart/summary`,
   });
-
-  if (session.url === "http://localhost:3000/success") {
-    const addOrderToUser = async (req, res) => {};
-    addOrderToUser();
-    res.send({ url: session.url, items: items });
-  } else {
-    res.send({ url: session.url });
-  }
+  return res.json({ session });
 };
+
+// exports.orderSuccess = async (req, res) => {
+//   const session = await stripe.checkout.sessions.retrieve(req.query.session_id);
+//   const customer = await stripe.customers.retrieve(session.customer);
+
+//   return res.json({ customer: customer, session: session });
+// };
