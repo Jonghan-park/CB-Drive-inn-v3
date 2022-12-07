@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useContext, useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 import { UserContext } from "../../App";
 import CartContext from "../../store/cart-context";
 import "./Summary.css";
@@ -8,8 +9,7 @@ const Summary = () => {
   const [taxAmount, setTaxAmount] = useState(0);
   const [totalPlusTax, setTotalPlusTax] = useState(0);
   const userCtx = useContext(UserContext);
-  const cartCtx = useContext(CartContext);
-  const { items, totalAmount } = cartCtx;
+  const { cartItems, totalAmount } = useSelector((state) => state.cart);
   const { user } = userCtx;
 
   const plusTaxTotalAmount = () => {
@@ -24,7 +24,7 @@ const Summary = () => {
     try {
       await axios
         .post("http://localhost:5000/stripe/create-checkout-session", {
-          items,
+          cartItems,
           totalAmount,
           user,
         })
@@ -49,9 +49,9 @@ const Summary = () => {
       {user ? (
         <div className="summary">
           <div className="order_summary_container_left">
-            {items.length === 0 && <h2>No items</h2>}
-            {items &&
-              items.map((item) => {
+            {cartItems.length === 0 && <h2>No items</h2>}
+            {cartItems &&
+              cartItems.map((item) => {
                 const { id, title, amount, price, img } = item;
                 return (
                   <div className="eachItem" key={id}>
