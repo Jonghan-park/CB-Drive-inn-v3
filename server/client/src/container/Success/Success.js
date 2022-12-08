@@ -1,5 +1,5 @@
-import axios from "axios";
 import React, { useEffect } from "react";
+import axios from "axios";
 import "./Success.css";
 
 const Success = () => {
@@ -14,7 +14,7 @@ const Success = () => {
     }
   };
   useEffect(() => {
-    // getCustomer();
+    getCustomer();
   }, []);
   return (
     <div className="success_container">

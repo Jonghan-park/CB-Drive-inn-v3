@@ -24,15 +24,14 @@ exports.checkoutStripe = async (req, res) => {
     //   enabled: true,
     // },
     mode: "payment",
-    success_url: `${DOMAIN}/success`,
+    success_url: `${DOMAIN}/success?session_id=1234`,
     cancel_url: `${DOMAIN}/cart/summary`,
   });
   return res.json({ session });
 };
 
-// exports.orderSuccess = async (req, res) => {
-//   const session = await stripe.checkout.sessions.retrieve(req.query.session_id);
-//   const customer = await stripe.customers.retrieve(session.customer);
-
-//   return res.json({ customer: customer, session: session });
-// };
+exports.orderSuccess = async (req, res) => {
+  // const session = await stripe.checkout.sessions.retrieve(req.query.session_id);
+  // const customer = await stripe.customers.retrieve(session.customer);
+  // return res.json({ customer: customer, session: session });
+};

@@ -1,13 +1,15 @@
 import React, { useContext, useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { UserContext } from "../../App";
 import axios from "axios";
 import "./Summary.css";
+import { getOrderId } from "../../features/order/orderSlice";
 
 const Summary = () => {
   const [taxAmount, setTaxAmount] = useState(0);
   const [totalPlusTax, setTotalPlusTax] = useState(0);
   const userCtx = useContext(UserContext);
+  const dispatch = useDispatch();
   const { cartItems, totalAmount } = useSelector((state) => state.cart);
   const { user } = userCtx;
 
@@ -28,8 +30,11 @@ const Summary = () => {
           user,
         })
         .then((res) => {
-          if (res.data.session.url) {
-            window.location.href = res.data.session.url;
+          if (res.data.session) {
+            dispatch(getOrderId(res.data.session.id));
+            const url = res.data.session.url;
+            // const sessionID = res.data.session.id;
+            window.location.href = url;
           }
         });
     } catch (error) {
