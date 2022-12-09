@@ -47,7 +47,7 @@ const Footer = () => (
               </a>
             </li>
             <li>
-              <a href="#">
+              <a href="https://www.facebook.com/cbdriveinn">
                 <BsFacebook className="icon" />
               </a>
             </li>
