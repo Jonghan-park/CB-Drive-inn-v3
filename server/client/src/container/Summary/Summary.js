@@ -24,11 +24,14 @@ const Summary = () => {
   const checkoutHandler = async () => {
     try {
       await axios
-        .post("http://localhost:5000/stripe/create-checkout-session", {
-          cartItems,
-          totalAmount,
-          user,
-        })
+        .post(
+          "https://cb-drive-inn-ks9s.onrender.com/stripe/create-checkout-session",
+          {
+            cartItems,
+            totalAmount,
+            user,
+          }
+        )
         .then((res) => {
           if (res.data.session) {
             const setOrderId = () => {

@@ -21,7 +21,10 @@ function Login() {
 
   const google = () => {
     try {
-      window.open("http://localhost:5000/auth/google", "_self");
+      window.open(
+        "https://cb-drive-inn-ks9s.onrender.com/auth/google",
+        "_self"
+      );
       // window.open("https://cb-drive-inn.herokuapp.com/auth/github", "_self");
     } catch (error) {
       console.log(error);
@@ -29,21 +32,23 @@ function Login() {
   };
 
   const github = () => {
-    window.open("http://localhost:5000/auth/github", "_self");
+    window.open("https://cb-drive-inn-ks9s.onrender.com/auth/github", "_self");
     // window.open("https://cb-drive-inn.herokuapp.com/auth/github", "_self");
   };
 
   const loginHandler = async (e) => {
     e.preventDefault();
     try {
-      const { data } = await axios.post("http://localhost:5000/user/login", {
-        email,
-        password,
-      });
+      const { data } = await axios.post(
+        "https://cb-drive-inn-ks9s.onrender.com/user/login",
+        {
+          email,
+          password,
+        }
+      );
       localStorage.setItem("authToken", data.token);
       alert("Login Successful");
-      window.open("http://localhost:3000", "_self");
-      // window.open("https://cb-drive-inn.herokuapp.com/", "_self");
+      window.open("https://cb-drive-inn-client.onrender.com/", "_self");
     } catch (error) {
       if (
         error.response &&

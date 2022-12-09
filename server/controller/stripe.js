@@ -1,6 +1,6 @@
 require("dotenv").config();
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
-const DOMAIN = "http://localhost:3000";
+const DOMAIN = "https://cb-drive-inn-client.onrender.com/";
 let CHECKOUT_SESSION_ID = "";
 
 exports.checkoutStripe = async (req, res) => {
