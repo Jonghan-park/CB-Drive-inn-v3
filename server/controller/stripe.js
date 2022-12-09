@@ -1,6 +1,7 @@
 require("dotenv").config();
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 const DOMAIN = "http://localhost:3000";
+let CHECKOUT_SESSION_ID = "";
 
 exports.checkoutStripe = async (req, res) => {
   const session = await stripe.checkout.sessions.create({
@@ -24,14 +25,15 @@ exports.checkoutStripe = async (req, res) => {
     //   enabled: true,
     // },
     mode: "payment",
-    success_url: `${DOMAIN}/success?session_id=1234`,
+    success_url: `${DOMAIN}/success?session_id=${CHECKOUT_SESSION_ID}`,
     cancel_url: `${DOMAIN}/cart/summary`,
   });
+  CHECKOUT_SESSION_ID = session.id;
   return res.json({ session });
 };
 
 exports.orderSuccess = async (req, res) => {
-  // const session = await stripe.checkout.sessions.retrieve(req.query.session_id);
+  const session = await stripe.checkout.sessions.retrieve(req.query.session_id);
   // const customer = await stripe.customers.retrieve(session.customer);
   // return res.json({ customer: customer, session: session });
 };

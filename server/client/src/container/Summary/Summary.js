@@ -31,7 +31,11 @@ const Summary = () => {
         })
         .then((res) => {
           if (res.data.session) {
-            dispatch(getOrderId(res.data.session.id));
+            const setOrderId = () => {
+              dispatch(getOrderId(res.data.session.id));
+            };
+            setOrderId();
+            console.log(res.data.session.id);
             const url = res.data.session.url;
             // const sessionID = res.data.session.id;
             window.location.href = url;

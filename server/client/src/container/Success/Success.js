@@ -1,14 +1,16 @@
 import React, { useEffect } from "react";
 import axios from "axios";
 import "./Success.css";
+import { useSelector } from "react-redux";
 
 const Success = () => {
+  const { orderId } = useSelector((state) => state.order);
   const getCustomer = async () => {
     try {
+      console.log(orderId);
       const data = await axios.get(
         "http://localhost:5000/stripe/order/success"
       );
-      console.log(data);
     } catch (error) {
       console.log(error);
     }
