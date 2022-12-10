@@ -25,7 +25,7 @@ exports.checkoutStripe = async (req, res) => {
     //   enabled: true,
     // },
     mode: "payment",
-    success_url: `${DOMAIN}/success?session_id=${CHECKOUT_SESSION_ID}`,
+    success_url: `${DOMAIN}/success`,
     cancel_url: `${DOMAIN}/cart/summary`,
   });
   CHECKOUT_SESSION_ID = session.id;
