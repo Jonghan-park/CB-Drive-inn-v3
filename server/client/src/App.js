@@ -1,12 +1,11 @@
 import { createContext } from "react";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 
 import { setCart } from "./features/cart/cartSlice";
-import jwt_decode from "jwt-decode";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import Navbar from "./components/Navbar/Navbar";
@@ -20,14 +19,13 @@ import Login from "./container/Login/Login";
 import Register from "./container/Register/Register";
 import LoginStatus from "./container/LoginStatus/LoginStatus";
 import Mypage from "./container/MyPage/MyPage";
-import CartProvider from "./store/CartProvider";
+
 import Summary from "./container/Summary/Summary";
 import Success from "./container/Success/Success";
 
 export const UserContext = createContext();
 
 function App() {
-  const [user, setUser] = useState(null);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -35,19 +33,8 @@ function App() {
       try {
         const res = await axios.get("http://localhost:5000/auth/login/success");
         localStorage.setItem("authToken", res.token);
-        setUser(res.user);
       } catch (error) {
         console.log(error);
-      }
-    };
-    const isLoggedIn = () => {
-      const token = localStorage.getItem("authToken");
-      if (token) {
-        const tokenUser = jwt_decode(token);
-        setUser(tokenUser);
-        if (!tokenUser) {
-          localStorage.removeItem("authToken");
-        }
       }
     };
     const getCart = () => {
@@ -57,42 +44,37 @@ function App() {
       }
       dispatch(setCart(cartItemFromLocal));
     };
+
     if (localStorage.getItem("cartItems")) {
       getCart();
     }
-
     getUser();
-    isLoggedIn();
   }, []);
 
   return (
     <div className="backgroundColor">
       <Router>
-        <CartProvider>
-          <ToastContainer
-            position="top-right"
-            autoClose={5000}
-            draggable
-            theme="dark"
-          />
-          <Navbar />
-          <UserContext.Provider value={{ user, setUser }}>
-            <LoginStatus />
-            <Routes>
-              <Route path="/" element={<Main />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/register" element={<Register />} />
-              <Route path="/user/mypage" element={<Mypage />} />
-              <Route path="/cart" element={<Cart />} />
-              <Route path="/cart/summary" element={<Summary />} />
-              <Route path="/menu" element={<Menu />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/contact" element={<Contact />} />
-              <Route path="/success" element={<Success />} />
-            </Routes>
-          </UserContext.Provider>
-          <Footer />
-        </CartProvider>
+        <ToastContainer
+          position="top-right"
+          autoClose={5000}
+          draggable
+          theme="dark"
+        />
+        <Navbar />
+        <LoginStatus />
+        <Routes>
+          <Route path="/" element={<Main />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/user/mypage" element={<Mypage />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/cart/summary" element={<Summary />} />
+          <Route path="/menu" element={<Menu />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/success" element={<Success />} />
+        </Routes>
+        <Footer />
       </Router>
     </div>
   );

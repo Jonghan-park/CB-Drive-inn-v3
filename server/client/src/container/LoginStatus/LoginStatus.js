@@ -17,7 +17,7 @@ function LoginStatus() {
     localStorage.removeItem("authToken");
     dispatch(userLogout());
 
-    toast.warning("Logout Successful");
+    toast.success("Logout Successful");
   };
 
   const getUser = async () => {
