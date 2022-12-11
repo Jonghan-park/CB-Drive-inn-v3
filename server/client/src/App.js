@@ -33,9 +33,7 @@ function App() {
   useEffect(() => {
     const getUser = async () => {
       try {
-        const res = await axios.get(
-          "https://cb-drive-inn-ks9s.onrender.com/auth/login/success"
-        );
+        const res = await axios.get("http://localhost:5000/auth/login/success");
         localStorage.setItem("authToken", res.token);
         setUser(res.user);
       } catch (error) {

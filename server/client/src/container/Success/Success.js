@@ -9,7 +9,7 @@ const Success = () => {
     try {
       console.log(orderId);
       const data = await axios.get(
-        "https://cb-drive-inn-ks9s.onrender.com/stripe/order/success"
+        "http://localhost:5000/stripe/order/success"
       );
     } catch (error) {
       console.log(error);

@@ -1,6 +1,6 @@
 require("dotenv").config();
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
-const DOMAIN = "https://cb-drive-inn-client.onrender.com";
+const DOMAIN = "http://localhost:3000";
 let CHECKOUT_SESSION_ID = "";
 
 exports.checkoutStripe = async (req, res) => {
@@ -28,12 +28,13 @@ exports.checkoutStripe = async (req, res) => {
     success_url: `${DOMAIN}/success`,
     cancel_url: `${DOMAIN}/cart/summary`,
   });
-  CHECKOUT_SESSION_ID = session.id;
+
   return res.json({ session });
 };
 
 exports.orderSuccess = async (req, res) => {
   const session = await stripe.checkout.sessions.retrieve(req.query.session_id);
+  console.log(session);
   // const customer = await stripe.customers.retrieve(session.customer);
   // return res.json({ customer: customer, session: session });
 };

@@ -24,21 +24,17 @@ const Summary = () => {
   const checkoutHandler = async () => {
     try {
       await axios
-        .post(
-          "https://cb-drive-inn-ks9s.onrender.com/stripe/create-checkout-session",
-          {
-            cartItems,
-            totalAmount,
-            user,
-          }
-        )
+        .post("http://localhost:5000/stripe/create-checkout-session", {
+          cartItems,
+          totalAmount,
+          user,
+        })
         .then((res) => {
           if (res.data.session) {
             const setOrderId = () => {
               dispatch(getOrderId(res.data.session.id));
             };
             setOrderId();
-            console.log(res.data.session.id);
             const url = res.data.session.url;
             // const sessionID = res.data.session.id;
             window.location.href = url;
