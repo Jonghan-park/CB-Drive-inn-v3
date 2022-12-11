@@ -5,12 +5,15 @@ import "./Login.css";
 import Google from "../../images/google.png";
 import Github from "../../images/github.png";
 import { useNavigate, Link } from "react-router-dom";
+import { toast } from "react-toastify";
+import { useDispatch } from "react-redux";
+import { userLogin } from "../../features/user/userSlice";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
 
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -38,16 +41,20 @@ function Login() {
         email,
         password,
       });
-      localStorage.setItem("authToken", data.token);
-      alert("Login Successful");
-      window.open("http://localhost:3000/", "_self");
+      if (data.token) {
+        localStorage.setItem("authToken", data.token);
+        navigate("/");
+        // window.open("http://localhost:3000/", "_self");
+        dispatch(userLogin());
+        toast.success("Login Successful");
+      }
     } catch (error) {
       if (
         error.response &&
         error.response.status >= 400 &&
         error.response.status <= 500
       ) {
-        setError(error.response.data.message);
+        toast.error(error.response.data.message);
       }
     }
   };
@@ -83,7 +90,6 @@ function Login() {
             Don't have an account? <Link to="/register">Register</Link>
           </div>
           <div className="social-media">
-            {error && <span>{error}</span>}
             <ul>
               <li className="google-container" onClick={google}>
                 <img src={Google} alt="google" />

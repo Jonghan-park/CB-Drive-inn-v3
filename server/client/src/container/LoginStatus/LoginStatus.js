@@ -3,15 +3,21 @@ import jwt_decode from "jwt-decode";
 
 import { Link } from "react-router-dom";
 import "./LoginStatus.css";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { userLogout } from "../../features/user/userSlice";
+import { toast } from "react-toastify";
 
 function LoginStatus() {
   const [user, setUser] = useState(null);
   const { cartItems } = useSelector((state) => state.cart);
+  const { isLogin } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
 
   const logout = () => {
     localStorage.removeItem("authToken");
-    window.open("http://localhost:5000/auth/logout", "_self");
+    dispatch(userLogout());
+
+    toast.warning("Logout Successful");
   };
 
   const getUser = async () => {
@@ -28,7 +34,7 @@ function LoginStatus() {
 
   useEffect(() => {
     getUser();
-  }, []);
+  }, [isLogin]);
 
   return (
     <div className="loginStatus-container">
