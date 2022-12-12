@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import jwt_decode from "jwt-decode";
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./LoginStatus.css";
 import { useDispatch, useSelector } from "react-redux";
 import { userLogout } from "../../features/user/userSlice";
@@ -12,11 +12,12 @@ function LoginStatus() {
   const { cartItems } = useSelector((state) => state.cart);
   const { isLogin } = useSelector((state) => state.user);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const logout = () => {
     localStorage.removeItem("authToken");
     dispatch(userLogout());
-
+    navigate("/");
     toast.success("Logout Successful");
   };
 
