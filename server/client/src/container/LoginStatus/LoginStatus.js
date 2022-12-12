@@ -30,6 +30,8 @@ function LoginStatus() {
       if (!tokenUser) {
         localStorage.removeItem("authToken");
       }
+    } else {
+      setUser("");
     }
   };
 
