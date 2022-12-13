@@ -9,7 +9,6 @@ const orderSlice = createSlice({
   initialState,
   reducers: {
     getOrderId: (state, action) => {
-      console.log(action.payload);
       state.orderId = action.payload;
     },
   },

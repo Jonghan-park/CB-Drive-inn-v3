@@ -9,6 +9,7 @@ import { useSelector } from "react-redux";
 const Cart = () => {
   const userCtx = useContext(UserContext);
   const { cartItems, totalAmount } = useSelector((state) => state.cart);
+  const { isLogin } = useSelector((state) => state.user);
   const totalAmountInCart = `${totalAmount.toFixed(2)}`;
 
   return (
@@ -30,7 +31,7 @@ const Cart = () => {
           <div className="checkout_box">
             <div className="subtotal">Sub-Total</div>
             <div className="total-amount">${totalAmountInCart}</div>
-            {userCtx.user ? (
+            {isLogin ? (
               <Link to="/cart/summary" className="checkout-button">
                 Checkout
               </Link>

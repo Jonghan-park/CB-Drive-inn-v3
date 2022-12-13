@@ -1,16 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import jwt_decode from "jwt-decode";
 
 import { Link, useNavigate } from "react-router-dom";
 import "./LoginStatus.css";
 import { useDispatch, useSelector } from "react-redux";
-import { userLogout } from "../../features/user/userSlice";
+import { userLogout, setUser } from "../../features/user/userSlice";
 import { toast } from "react-toastify";
 
 function LoginStatus() {
-  const [user, setUser] = useState(null);
   const { cartItems } = useSelector((state) => state.cart);
-  const { isLogin } = useSelector((state) => state.user);
+  const { isLogin, user } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -25,13 +24,13 @@ function LoginStatus() {
     const token = localStorage.getItem("authToken");
     if (token) {
       const tokenUser = jwt_decode(token);
-      setUser(tokenUser);
+      dispatch(setUser(tokenUser));
 
       if (!tokenUser) {
         localStorage.removeItem("authToken");
       }
     } else {
-      setUser("");
+      setUser(null);
     }
   };
 
