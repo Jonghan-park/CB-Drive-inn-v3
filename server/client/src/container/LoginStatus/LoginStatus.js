@@ -4,7 +4,7 @@ import jwt_decode from "jwt-decode";
 import { Link, useNavigate } from "react-router-dom";
 import "./LoginStatus.css";
 import { useDispatch, useSelector } from "react-redux";
-import { userLogout, setUser } from "../../features/user/userSlice";
+import { userLogout, setUser, userLogin } from "../../features/user/userSlice";
 import { toast } from "react-toastify";
 
 function LoginStatus() {
@@ -25,6 +25,7 @@ function LoginStatus() {
     if (token) {
       const tokenUser = jwt_decode(token);
       dispatch(setUser(tokenUser));
+      dispatch(userLogin());
 
       if (!tokenUser) {
         localStorage.removeItem("authToken");
