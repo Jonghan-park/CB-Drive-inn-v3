@@ -1,6 +1,5 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { UserContext } from "../../App";
 import axios from "axios";
 import "./Summary.css";
 import { getOrderId } from "../../features/order/orderSlice";
@@ -8,10 +7,10 @@ import { getOrderId } from "../../features/order/orderSlice";
 const Summary = () => {
   const [taxAmount, setTaxAmount] = useState(0);
   const [totalPlusTax, setTotalPlusTax] = useState(0);
-  const userCtx = useContext(UserContext);
+
   const dispatch = useDispatch();
   const { cartItems, totalAmount } = useSelector((state) => state.cart);
-  const { user } = userCtx;
+  const { isLogin } = useSelector((state) => state.user);
 
   const plusTaxTotalAmount = () => {
     const tax = 5;
@@ -27,7 +26,6 @@ const Summary = () => {
         .post("http://localhost:5000/stripe/create-checkout-session", {
           cartItems,
           totalAmount,
-          user,
         })
         .then((res) => {
           if (res.data.session) {
@@ -53,7 +51,7 @@ const Summary = () => {
     <div>
       <h3 className="summaryTitle">Order Summary</h3>
       <div className="underline" />
-      {user ? (
+      {isLogin ? (
         <div className="summary">
           <div className="order_summary_container_left">
             {cartItems.length === 0 && <h2>No items</h2>}
