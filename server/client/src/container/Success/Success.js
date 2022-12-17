@@ -17,8 +17,12 @@ const Success = () => {
       const response = await axios.get(
         `http://localhost:5000/stripe/order/success?session_id=${sessionId}`
       );
-      setCustomerName(response.data.customer.name);
-      if (response.data.customer) {
+
+      if (
+        response.data.customer &&
+        response.data.session.payment_status === "paid"
+      ) {
+        setCustomerName(response.data.customer.name);
         dispatch(clearCart());
         localStorage.removeItem("cartItems");
       }

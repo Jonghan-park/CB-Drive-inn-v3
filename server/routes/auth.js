@@ -6,7 +6,6 @@ const User = require("../models/user");
 const CLIENT_URL = "http://localhost:3000";
 
 router.get("/login/success", async (req, res) => {
-  console.log(req.user);
   if (req.user) {
     const token = jwt.sign(
       {

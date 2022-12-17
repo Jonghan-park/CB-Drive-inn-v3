@@ -35,5 +35,5 @@ exports.checkoutStripe = async (req, res) => {
 exports.orderSuccess = async (req, res) => {
   const session = await stripe.checkout.sessions.retrieve(req.query.session_id);
   const customer = await stripe.customers.retrieve(session.customer);
-  return res.json({ customer: customer });
+  return res.json({ customer: customer, session: session });
 };
