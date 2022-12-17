@@ -1,16 +1,27 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import axios from "axios";
 import "./Success.css";
-import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { clearCart } from "../../features/cart/cartSlice";
 
 const Success = () => {
-  const { orderId } = useSelector((state) => state.order);
+  const [customerName, setCustomerName] = useState("");
+  const search = useLocation().search;
+  const sessionId = new URLSearchParams(search).get("session_id");
+
+  const dispatch = useDispatch();
+
   const getCustomer = async () => {
     try {
-      console.log(orderId);
-      const data = await axios.get(
-        "http://localhost:5000/stripe/order/success"
+      const response = await axios.get(
+        `http://localhost:5000/stripe/order/success?session_id=${sessionId}`
       );
+      setCustomerName(response.data.customer.name);
+      if (response.data.customer) {
+        dispatch(clearCart());
+        localStorage.removeItem("cartItems");
+      }
     } catch (error) {
       console.log(error);
     }
@@ -22,7 +33,7 @@ const Success = () => {
     <div className="success_container">
       <i class="checkmark">✓</i>
       <h2>Payment successful !</h2>
-      <h3>Thank you for your order, </h3>
+      <h3>Thank you for your order, {customerName} </h3>
       <p>We are delighted to inform you that we received your payments</p>
       <button className="view_orders">View Orders</button>
     </div>

@@ -24,7 +24,7 @@ exports.checkoutStripe = async (req, res) => {
     //   enabled: true,
     // },
     mode: "payment",
-    success_url: `${DOMAIN}?session_id={CHECKOUT_SESSION_ID}`,
+    success_url: `${DOMAIN}/stripe/order/success?session_id={CHECKOUT_SESSION_ID}`,
     // success_url: `${DOMAIN}/success`,
     cancel_url: `${DOMAIN}/cart/summary`,
   });
@@ -34,7 +34,6 @@ exports.checkoutStripe = async (req, res) => {
 
 exports.orderSuccess = async (req, res) => {
   const session = await stripe.checkout.sessions.retrieve(req.query.session_id);
-  console.log(session);
-  // const customer = await stripe.customers.retrieve(session.customer);
-  // return res.json({ customer: customer, session: session });
+  const customer = await stripe.customers.retrieve(session.customer);
+  return res.json({ customer: customer });
 };

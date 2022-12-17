@@ -70,10 +70,20 @@ const cartSlice = createSlice({
         state.totalAmount = totalAmountFromLocal;
       }
     },
+    clearCart: (state) => {
+      state.cartItems = [];
+      state.totalAmount = 0;
+    },
   },
 });
 
-export const { addItem, decrementItem, incrementItem, removeItem, setCart } =
-  cartSlice.actions;
+export const {
+  addItem,
+  decrementItem,
+  incrementItem,
+  removeItem,
+  setCart,
+  clearCart,
+} = cartSlice.actions;
 
 export default cartSlice.reducer;

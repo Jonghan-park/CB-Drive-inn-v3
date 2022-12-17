@@ -72,7 +72,7 @@ function App() {
           <Route path="/menu" element={<Menu />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/success" element={<Success />} />
+          <Route path="/stripe/order/success" element={<Success />} />
         </Routes>
         <Footer />
       </Router>
