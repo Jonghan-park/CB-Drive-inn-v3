@@ -7,7 +7,7 @@ import Github from "../../images/github.png";
 import { useNavigate, Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useDispatch } from "react-redux";
-import { userLogin } from "../../features/user/userSlice";
+import { setUser, userLogin } from "../../features/user/userSlice";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -46,6 +46,7 @@ function Login() {
         navigate("/");
         // window.open("http://localhost:3000/", "_self");
         dispatch(userLogin());
+        dispatch(setUser(data.user));
         toast.success("Login Successful");
       }
     } catch (error) {

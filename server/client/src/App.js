@@ -1,4 +1,3 @@
-import { createContext } from "react";
 import { useEffect } from "react";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -22,8 +21,6 @@ import Mypage from "./container/MyPage/MyPage";
 
 import Summary from "./container/Summary/Summary";
 import Success from "./container/Success/Success";
-
-export const UserContext = createContext();
 
 function App() {
   const dispatch = useDispatch();

@@ -1,13 +1,11 @@
-import React, { useContext } from "react";
+import React from "react";
 
-import { UserContext } from "../../App";
 import CartItem from "./CartItem";
 import "./Cart.css";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 const Cart = () => {
-  const userCtx = useContext(UserContext);
   const { cartItems, totalAmount } = useSelector((state) => state.cart);
   const { isLogin } = useSelector((state) => state.user);
   const totalAmountInCart = `${totalAmount.toFixed(2)}`;

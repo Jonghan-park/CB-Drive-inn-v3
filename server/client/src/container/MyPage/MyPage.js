@@ -1,16 +1,15 @@
-import React, { useContext } from "react";
-import { UserContext } from "../../App";
+import React from "react";
+import { useSelector } from "react-redux";
 import "./MyPage.css";
 
 function MyPage() {
-  const user = useContext(UserContext);
-
+  const { user } = useSelector((state) => state.user);
   return (
     <>
       <div className="myPage">
         <h3 className="myPageTitle">My Page</h3>
         <div className="underline" />
-        {user.user.displayName ? (
+        {user.displayName ? (
           <form className="myPage-form">
             <h2>Hello, {user.user.displayName}!</h2>
             <div className="myPagePic">
@@ -22,11 +21,11 @@ function MyPage() {
           </form>
         ) : (
           <form className="myPage-form">
-            <h2>Hello, {user.user.name}!</h2>
+            <h2>Hello, {user.name}!</h2>
             <h3>Your Email:</h3>
-            <h4 className="userEmail">{user.user.email}</h4>
+            <h4 className="userEmail">{user.email}</h4>
             <div className="myPagePic">
-              <img src={user.user.pic} alt="avatar in my page" />
+              <img src={user.pic} alt="avatar in my page" />
             </div>
             <button type="submit" className="submit">
               Change the profile
