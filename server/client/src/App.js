@@ -21,6 +21,7 @@ import Mypage from "./container/MyPage/MyPage";
 
 import Summary from "./container/Summary/Summary";
 import Success from "./container/Success/Success";
+import ViewOrders from "./container/ViewOrders/ViewOrders";
 
 function App() {
   const dispatch = useDispatch();
@@ -69,6 +70,7 @@ function App() {
           <Route path="/menu" element={<Menu />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/viewOrders" element={<ViewOrders />} />
           <Route path="/stripe/order/success" element={<Success />} />
         </Routes>
         <Footer />

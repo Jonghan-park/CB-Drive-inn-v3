@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import axios from "axios";
 import "./Success.css";
 import { useDispatch } from "react-redux";
@@ -39,7 +39,10 @@ const Success = () => {
       <h2>Payment successful !</h2>
       <h3>Thank you for your order, {customerName} </h3>
       <p>We are delighted to inform you that we received your payments</p>
-      <button className="view_orders">View Orders</button>
+
+      <Link to="/viewOrders">
+        <button className="checkout-button">View Orders</button>
+      </Link>
     </div>
   );
 };

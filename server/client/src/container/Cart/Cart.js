@@ -30,12 +30,12 @@ const Cart = () => {
             <div className="subtotal">Sub-Total</div>
             <div className="total-amount">${totalAmountInCart}</div>
             {isLogin ? (
-              <Link to="/cart/summary" className="checkout-button">
-                Checkout
+              <Link to="/cart/summary">
+                <button className="checkout-button">Checkout</button>
               </Link>
             ) : (
-              <Link to="/login" className="checkout-button">
-                Login to checkout
+              <Link to="/login">
+                <button className="checkout-button">Login to checkout</button>
               </Link>
             )}
           </div>
