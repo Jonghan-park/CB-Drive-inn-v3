@@ -1,20 +1,44 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import jwt_decode from "jwt-decode";
+import { setUser, userLogin } from "../../features/user/userSlice";
 import "./MyPage.css";
 
 function MyPage() {
-  const { user } = useSelector((state) => state.user);
+  const [nameFromOAuth, setNameFromOAuth] = useState("");
+  const { isLogin, user } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+  const token = localStorage.getItem("authToken");
+
+  const getUser = async () => {
+    if (token) {
+      const tokenUser = jwt_decode(token);
+      dispatch(setUser(tokenUser));
+      dispatch(userLogin());
+
+      if (!tokenUser) {
+        localStorage.removeItem("authToken");
+      }
+    } else {
+      dispatch(setUser(null));
+    }
+  };
+
+  if (!isLogin) {
+    getUser();
+  }
+
   return (
     <>
       <div className="myPage">
         <h3 className="myPageTitle">My Page</h3>
         <div className="underline" />
-        {user.displayName ? (
+        {nameFromOAuth ? (
           <form className="myPage-form">
-            <h2>Hello, {user.user.displayName}!</h2>
+            <h2>Hello, {user.displayName}!</h2>
             <div className="myPagePic">
-              <img src={user.user.photos[0].value} alt="avatar in my page" />
+              <img src={user.photos[0].value} alt="avatar in my page" />
             </div>
             <button type="submit" className="submit">
               Order History
@@ -30,12 +54,12 @@ function MyPage() {
               </div>
               <div className="myPagePic">
                 <img src={user.pic} alt="avatar in my page" />
-                <button type="submit" className="submit">
+                <button type="submit" className="submit" disabled>
                   Change your picture
                 </button>
               </div>
               <div className="myOrders">
-                <Link to="/viewOrders">
+                <Link to={`/viewOrders/${user.id}`}>
                   <button type="submit" className="submit">
                     View your orders
                   </button>

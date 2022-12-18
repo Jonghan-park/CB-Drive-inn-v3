@@ -67,6 +67,7 @@ const sendUserAndToken = (user, statusCode, res) => {
   return res.status(statusCode).json({
     success: true,
     user: user,
+    id: user._id,
     name: user.name,
     pic: user.pic,
     token: token,

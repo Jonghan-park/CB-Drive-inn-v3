@@ -1,10 +1,11 @@
-import React from 'react'
-import './ViewOrders.css'
+import React from "react";
+import { useParams } from "react-router-dom";
+import "./ViewOrders.css";
 
 const ViewOrders = () => {
-  return (
-    <div>ViewOrders</div>
-  )
-}
+  const { id } = useParams();
+  console.log(id);
+  return <div>ViewOrders</div>;
+};
 
-export default ViewOrders
+export default ViewOrders;

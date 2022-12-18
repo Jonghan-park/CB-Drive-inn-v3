@@ -51,6 +51,7 @@
 .myPagePic .submit{
   width: 20%;
   font-size: 20px;
+  cursor:not-allowed
 }
 .userEmail{
   text-transform: lowercase;
