@@ -14,9 +14,6 @@ const menuSchema = new mongoose.Schema({
     default:
       "https://icon-library.com/images/anonymous-avatar-icon/anonymous-avatar-icon-25.jpg",
   },
-  InStock: {
-    type: Boolean,
-  },
   desc: {
     type: String,
   },
