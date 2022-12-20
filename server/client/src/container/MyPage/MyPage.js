@@ -59,7 +59,7 @@ function MyPage() {
                 </button>
               </div>
               <div className="myOrders">
-                <Link to={`/viewOrders/${user.id}`}>
+                <Link to="/viewOrders">
                   <button type="submit" className="submit">
                     View your orders
                   </button>

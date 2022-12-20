@@ -70,7 +70,7 @@ function App() {
           <Route path="/menu" element={<Menu />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/viewOrders/:id" element={<ViewOrders />} />
+          <Route path="/viewOrders" element={<ViewOrders />} />
           <Route path="/stripe/order/success" element={<Success />} />
         </Routes>
         <Footer />

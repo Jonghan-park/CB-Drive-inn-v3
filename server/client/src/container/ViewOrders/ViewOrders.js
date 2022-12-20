@@ -1,11 +1,14 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
 import "./ViewOrders.css";
 
 const ViewOrders = () => {
-  const { id } = useParams();
-  console.log(id);
-  return <div>ViewOrders</div>;
+  const { isLogin, user } = useSelector((state) => state.user);
+  return (
+    <div className="">
+      {isLogin ? <div>ViewOrders</div> : <div>You are not logined.</div>}
+    </div>
+  );
 };
 
 export default ViewOrders;
