@@ -1,3 +1,5 @@
+const Order = require("../models/order");
+
 require("dotenv").config();
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 const DOMAIN = "http://localhost:3000";
@@ -36,4 +38,16 @@ exports.orderSuccess = async (req, res) => {
   const session = await stripe.checkout.sessions.retrieve(req.query.session_id);
   const customer = await stripe.customers.retrieve(session.customer);
   return res.json({ customer: customer, session: session });
+};
+
+exports.saveOrder = async (req, res) => {
+  const {} = req.body;
+  try {
+    const order = new Order({
+      menus: "",
+      stripeId: "",
+      subtotal: "",
+      user: "",
+    });
+  } catch (error) {}
 };

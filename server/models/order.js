@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const orderSchema = new mongoose.Schema({
   date: {
     type: String,
-    required: true,
+    default: Date.now(),
   },
   menus: [
     {

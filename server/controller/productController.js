@@ -3,7 +3,6 @@ const Menu = require("../models/menu");
 const getAllProducts = async (req, res) => {
   try {
     const menus = await Menu.find({});
-    console.log(menus);
     res.json(menus);
   } catch (error) {
     console.error(error);
