@@ -42,6 +42,7 @@ exports.orderSuccess = async (req, res) => {
 
 exports.saveOrder = async (req, res) => {
   const {} = req.body;
+  console.log(req.body.data);
   try {
     const order = new Order({
       menus: "",

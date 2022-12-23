@@ -21,7 +21,7 @@ const Success = () => {
       if (data.customer && data.session.payment_status === "paid") {
         console.log(data);
         setCustomerName(data.customer.name);
-
+        await axios.post(`http://localhost:5000/stripe/order/save`, data);
         dispatch(clearCart());
         localStorage.removeItem("cartItems");
       }
