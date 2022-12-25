@@ -36,15 +36,17 @@ exports.checkoutStripe = async (req, res) => {
 
 exports.orderSuccess = async (req, res) => {
   const session = await stripe.checkout.sessions.retrieve(req.query.session_id);
+  const lineItem = await stripe.checkout.sessions.listLineItems(
+    req.query.session_id
+  );
   const customer = await stripe.customers.retrieve(session.customer);
 
   try {
     const order = new Order({
-      menus: "",
-      stripeId: "",
-      subtotal: "",
+      menus: lineItem.data,
       user: "",
     });
+    console.log(order);
   } catch (error) {}
 
   return res.json({ customer: customer, session: session });

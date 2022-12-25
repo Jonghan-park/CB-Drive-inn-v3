@@ -7,17 +7,11 @@ const orderSchema = new mongoose.Schema({
   },
   menus: [
     {
-      menu: { type: mongoose.Types.ObjectId, ref: "Menu", required: true },
+      description: String,
+      amount_total: Number,
       quantity: Number,
     },
   ],
-  stripeId: {
-    type: String,
-  },
-  subtotal: {
-    type: Number,
-    required: true,
-  },
   user: { type: mongoose.Types.ObjectId, ref: "User", required: true },
 });
 
