@@ -37,12 +37,7 @@ exports.checkoutStripe = async (req, res) => {
 exports.orderSuccess = async (req, res) => {
   const session = await stripe.checkout.sessions.retrieve(req.query.session_id);
   const customer = await stripe.customers.retrieve(session.customer);
-  return res.json({ customer: customer, session: session });
-};
 
-exports.saveOrder = async (req, res) => {
-  const {} = req.body;
-  console.log(req.body.data);
   try {
     const order = new Order({
       menus: "",
@@ -51,4 +46,6 @@ exports.saveOrder = async (req, res) => {
       user: "",
     });
   } catch (error) {}
+
+  return res.json({ customer: customer, session: session });
 };

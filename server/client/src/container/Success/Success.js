@@ -17,11 +17,10 @@ const Success = () => {
       const response = await axios.get(
         `http://localhost:5000/stripe/order/success?session_id=${sessionId}`
       );
-      const { data } = await response.data;
+      const data = await response.data;
       if (data.customer && data.session.payment_status === "paid") {
         console.log(data);
         setCustomerName(data.customer.name);
-        await axios.post(`http://localhost:5000/stripe/order/save`, data);
         dispatch(clearCart());
         localStorage.removeItem("cartItems");
       }

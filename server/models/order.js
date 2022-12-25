@@ -9,7 +9,6 @@ const orderSchema = new mongoose.Schema({
     {
       menu: { type: mongoose.Types.ObjectId, ref: "Menu", required: true },
       quantity: Number,
-      total: menu.price * quantity,
     },
   ],
   stripeId: {

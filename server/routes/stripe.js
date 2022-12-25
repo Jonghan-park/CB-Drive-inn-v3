@@ -9,6 +9,5 @@ const {
 
 router.post("/create-checkout-session", checkoutStripe);
 router.get("/order/success", orderSuccess);
-router.post("/order/save", saveOrder);
 
 module.exports = router;
