@@ -1,4 +1,5 @@
 const Order = require("../models/order");
+const User = require("../models/user");
 
 require("dotenv").config();
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
@@ -36,18 +37,33 @@ exports.checkoutStripe = async (req, res) => {
 
 exports.orderSuccess = async (req, res) => {
   const session = await stripe.checkout.sessions.retrieve(req.query.session_id);
+
+  const customer = await stripe.customers.retrieve(session.customer);
+
+  return res.json({ customer: customer, session: session });
+};
+
+exports.saveOrder = async (req, res) => {
+  const { userId } = req.body;
+  console.log(req.body);
   const lineItem = await stripe.checkout.sessions.listLineItems(
     req.query.session_id
   );
-  const customer = await stripe.customers.retrieve(session.customer);
+  let user;
+  try {
+    user = await User.findById(userId);
+  } catch (error) {
+    console.log(error);
+    return res.status(400).json({ message: "Unable to find User" });
+  }
+  console.log(user);
+  const order = new Order({
+    menus: lineItem.data,
+    user: user,
+  });
 
   try {
-    const order = new Order({
-      menus: lineItem.data,
-      user: "",
-    });
-    console.log(order);
-  } catch (error) {}
-
-  return res.json({ customer: customer, session: session });
+  } catch (error) {
+    console.log(error);
+  }
 };
