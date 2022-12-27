@@ -7,7 +7,7 @@
 My client needs a pick-up order system that customer can order food online and pick it up. 
 
 # Link
-https://cb--drive--inn.herokuapp.com/ 
+https://cb-drive-inn-client.onrender.com
 
 # Environment
 Used : React.js, HTML, CSS, Node.js, Express, JWT, Passport, NodeMailer, Stripe, MongoDB  
