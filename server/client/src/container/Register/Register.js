@@ -28,7 +28,7 @@ function Register() {
     }
     try {
       await axios.post(
-        "http://localhost:5000/user/register",
+        "https://cb-drive-inn-ks9s.onrender.com/user/register",
         { name, email, password },
         config
       );
