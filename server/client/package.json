@@ -1,6 +1,6 @@
 {
   "name": "client",
-  "proxy": "https://cb-drive-inn-ks9s.onrender.com",
+  "proxy": "https://cb-drive-inn-client.onrender.com/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

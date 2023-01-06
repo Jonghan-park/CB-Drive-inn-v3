@@ -25,7 +25,7 @@ function Login() {
   const google = () => {
     try {
       window.open(
-        "https://cb-drive-inn-ks9s.onrender.com/auth/google",
+        "https://cb-drive-inn-client.onrender.com/auth/google",
         "_self"
       );
     } catch (error) {
@@ -34,14 +34,17 @@ function Login() {
   };
 
   const github = () => {
-    window.open("https://cb-drive-inn-ks9s.onrender.com/auth/github", "_self");
+    window.open(
+      "https://cb-drive-inn-client.onrender.com/auth/github",
+      "_self"
+    );
   };
 
   const loginHandler = async (e) => {
     e.preventDefault();
     try {
       const { data } = await axios.post(
-        "https://cb-drive-inn-ks9s.onrender.com/user/login",
+        "https://cb-drive-inn-client.onrender.com/user/login",
         {
           email,
           password,

@@ -30,7 +30,7 @@ function App() {
     const getUser = async () => {
       try {
         const res = await axios.get(
-          "https://cb-drive-inn-ks9s.onrender.com/auth/login/success"
+          "https://cb-drive-inn-client.onrender.com/auth/login/success"
         );
         localStorage.setItem("authToken", res.token);
       } catch (error) {
