@@ -24,7 +24,7 @@ const Summary = () => {
     try {
       await axios
         .post(
-          "https://cb-drive-inn-ks9s.onrender.com/stripe/create-checkout-session",
+          "https://cb-drive-inn-client.onrender.com/stripe/create-checkout-session",
           {
             cartItems,
             totalAmount,
