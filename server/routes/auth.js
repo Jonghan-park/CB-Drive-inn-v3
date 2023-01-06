@@ -3,7 +3,7 @@ const passport = require("passport");
 const jwt = require("jsonwebtoken");
 const User = require("../models/user");
 
-const CLIENT_URL = "https://cb-drive-inn-client.onrender.com";
+const CLIENT_URL = "https://cb-drive-inn-ks9s.onrender.com";
 
 router.get("/login/success", async (req, res) => {
   if (req.user) {

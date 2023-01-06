@@ -16,7 +16,7 @@ const Success = () => {
   const saveOrder = async () => {
     try {
       await axios.post(
-        "https://cb-drive-inn-client.onrender.com/stripe/order/save",
+        "https://cb-drive-inn-ks9s.onrender.com/stripe/order/save",
         user.id
       );
     } catch (error) {
@@ -27,7 +27,7 @@ const Success = () => {
   const getCustomer = async () => {
     try {
       const response = await axios.get(
-        `https://cb-drive-inn-client.onrender.com/stripe/order/success?session_id=${sessionId}`
+        `https://cb-drive-inn-ks9s.onrender.com/stripe/order/success?session_id=${sessionId}`
       );
       const data = await response.data;
       if (data.customer && data.session.payment_status === "paid") {

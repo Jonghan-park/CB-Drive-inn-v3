@@ -28,7 +28,7 @@ function Register() {
     }
     try {
       await axios.post(
-        "https://cb-drive-inn-client.onrender.com/user/register",
+        "https://cb-drive-inn-ks9s.onrender.com/user/register",
         { name, email, password },
         config
       );
