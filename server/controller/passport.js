@@ -28,9 +28,11 @@ passport.use(
     {
       clientID: GITHUB_CLIENT_ID,
       clientSecret: GITHUB_CLIENT_SECRET,
-      callbackURL: "/auth/github/callback",
+      callbackURL:
+        "https://cb-drive-inn-ks9s.onrender.com/auth/github/callback",
     },
     function (accessToken, refreshToken, profile, done) {
+      console.log(profile);
       done(null, profile);
     }
   )
