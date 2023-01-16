@@ -32,7 +32,6 @@ passport.use(
         "https://cb-drive-inn-ks9s.onrender.com/auth/github/callback",
     },
     function (accessToken, refreshToken, profile, done) {
-      console.log(profile);
       done(null, profile);
     }
   )
