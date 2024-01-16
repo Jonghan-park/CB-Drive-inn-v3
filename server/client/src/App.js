@@ -39,9 +39,9 @@ function App() {
     };
     const getCart = () => {
       let cartItemFromLocal = [];
-      if (localStorage.getItem("cartItems") !== []) {
-        cartItemFromLocal = JSON.parse(localStorage.getItem("cartItems"));
-      }
+      // if (localStorage.getItem("cartItems") !== []) {
+      //   cartItemFromLocal = JSON.parse(localStorage.getItem("cartItems"));
+      // }
       dispatch(setCart(cartItemFromLocal));
     };
 
